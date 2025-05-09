@@ -1,0 +1,23 @@
+:root {
+    --darkest: #08151d;
+    --dark: #e13030;
+    --middle: #e04949;
+    --light: #e37878;
+    --lightest: #deb9b9;
+    --yellow-mid: #e5c324;
+    --yellow-light: #fffec8;
+    --background-light: #1c303d;
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    font-family: "Futura", Verdana, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+    background: var(--darkest);
+  }
+
+* {
+box-sizing: border-box;
+}
