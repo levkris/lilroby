@@ -39,6 +39,7 @@ rankingTab.addEventListener("click", () => {
 })
 
 
+getRankings('prints_count')
 
 
 printsCountRankingTab.addEventListener("click", () => {
