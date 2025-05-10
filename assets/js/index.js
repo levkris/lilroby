@@ -129,6 +129,9 @@ function getProfile() {
 
         } else {
             console.error("Error:", data.error);
+            if (data.error === "User has to verify their email first.") {
+                window.location.href = "verify.html";
+            }
         }
     })
     .catch(error => {
