@@ -145,6 +145,9 @@ function getProfile() {
             console.error("Error:", data.error);
             if (data.error === "User has to verify their email first.") {
                 window.location.href = "verify.html";
+            } else if (data.error === "Invalid or expired access token") {
+                loggedIn = false;
+                fetchTimeline();                
             }
         }
     })
