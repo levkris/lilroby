@@ -96,3 +96,8 @@ printAddTxtFieldBtn.addEventListener("click", () => {
 });
 
 let submittingForm = false;
+
+function logout() {
+    localStorage.clear();
+    window.location.href = "/";
+}

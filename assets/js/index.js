@@ -72,7 +72,7 @@ function getProfile() {
                         <div class="modalHeader">
                         <div class="modalTitle">Account</div>
                         <div class="modalAccountHeaderRight">
-                            <button class="modalAccountLogoutBtn">Logout</button>
+                            <button class="modalAccountLogoutBtn" onclick="logout()">Logout</button>
                             <button class="modalCloseBtn" id="modal-close-btn" onclick="this.parentElement.parentElement.parentElement.parentElement.remove();">
                             <i class="material-symbols-rounded">close</i>
                             </button>
