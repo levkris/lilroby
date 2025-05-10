@@ -1,4 +1,6 @@
 const mainTabsNavSection = document.querySelector(".mainTabsNavSection");
+const printsSectionTab = document.getElementById("prints-section-tab");
+const lilCoinsSectionTab = document.getElementById("lilcoins-tab");
 
 
 const hamburgerMenu = document.querySelector(".hamburgerMenu");
