@@ -35,11 +35,14 @@ function doCorrespondingAction() {
     if (accessTokenValid() && refreshTokenValid()) {
         loggedIn = true;
         getProfile();
+        fetchTimeline();
     } else if (!accessTokenValid() && refreshTokenValid() && access_token !== null && refresh_token !== null) {
         console.log("Access token is not valid, but refresh token is");
+        fetchTimeline();
 
     } else {
         loggedIn = false;
+        fetchTimeline();
     }
 }
 
@@ -243,7 +246,7 @@ form.addEventListener('submit', async (e) => {
 function fetchTimeline() {
     fetch("https://wokki20.nl/lilroby/api/v1/timeline", {
         headers: {
-            "Authorization": `Bearer ${accessToken}`
+            "Authorization": `Bearer ${access_token}`
         }
     })
     .then(response => response.json())
