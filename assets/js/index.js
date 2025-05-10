@@ -260,7 +260,7 @@ function fetchTimeline() {
                         <div class="timelinePrintjobContent">
                             <img
                             class="timelinePrintjobImg"
-                            src="https://wokki20.nl/lilroby/api/v1/posts/${post.unique_image_id}.webp"
+                            src="https://wokki20.nl/lilroby/api/v1/prints/${post.unique_image_id}.webp"
                             />
                             <div class="timelinePrintjobTitle">${post.title}</div>
                             <div class="timelinePrintjobText">${post.message || ""}</div>
