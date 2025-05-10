@@ -298,6 +298,32 @@ function fetchTimeline(offset = 0) {
                 postsHtml += postHtml;
             });
             timelineContainer.innerHTML += postsHtml;
+
+
+            if (loggedIn) {
+                document.querySelectorAll(".timelinePrintjobFooterUpvoteBtn").forEach(btn => {
+                    btn.addEventListener("click", async () => {
+                        const printId = btn.parentElement.parentElement.parentElement.id;
+                        const accessToken = localStorage.getItem("access_token");
+                        const response = await fetch(`https://wokki20.nl/lilroby/api/v1/prints/${printId}/upvote`, {
+                            method: "POST",
+                            headers: {
+                                "Authorization": `Bearer ${accessToken}`
+                            }
+                        });
+                        const result = await response.json();
+                        if (result.success) {
+                            if (result.upvoted) {
+                                btn.querySelector(".timelinePrintjobFooterUpvoteBtnIcon").src = "assets/branding/upvote-true.png";
+                                btn.parentElement.querySelector(".timelinePrintjobFooterUpvotesCount").innerHTML = result.upvotes;
+                            } else {
+                                btn.querySelector(".timelinePrintjobFooterUpvoteBtnIcon").src = "assets/branding/upvote-false.png";
+                                btn.parentElement.querySelector(".timelinePrintjobFooterUpvotesCount").innerHTML = result.upvotes;
+                            }
+                        }
+                    })
+                })
+            }
         }
     })
     .catch(error => {
