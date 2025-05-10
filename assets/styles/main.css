@@ -1077,180 +1077,6 @@ textarea {
   justify-content: center;
 }
 
-/* Lil COINS Section */
-.lilCoinsContentWrapper {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  color: #fff;
-}
-.lilCoinsTitleWrapper {
-  width: 100%;
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  font-size: 16px;
-  justify-content: center;
-  margin-bottom: 2.5rem;
-  opacity: 0.6;
-}
-/*Desktop*/
-@media screen and (min-width: 768px) {
-  .lilCoinsContentWrapper {
-    padding: 0;
-    margin-top: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-    color: #fff;
-  }
-}
-
-.lilCoinsUserBalanceWrapper {
-  width: 100%;
-  display: flex;
-  gap: 0.25rem;
-  margin-bottom: 1rem;
-}
-.lilCoinsUserBalanceDisplay {
-  margin-left: 0.25rem;
-}
-.lilCoinsDescriptionWrapper {
-  width: 100%;
-  max-width: 600px;
-  margin-bottom: 1rem;
-}
-.lilCoinsShopWrapper {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.lilCoinsShopMsgWrapper {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-top: 0.75rem;
-}
-.lilCoinsOfferWraper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem;
-  padding: 2rem;
-  color: #000;
-  background-color: #fff;
-  opacity: 0.9;
-  border-radius: 10px;
-}
-.lilCoinsOfferMain {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  grid-template-rows: 45px 45px;
-  width: 100%;
-}
-.lilCoinsOfferTitle {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-}
-.lilCoinsOfferBtn {
-  border-radius: 10px;
-  margin: 0.25rem 0;
-  cursor: pointer;
-  height: 80%;
-  background: #000;
-  color: #fff;
-}
-.lilCoinsOfferBtn.inactive {
-  background: transparent;
-  border: 1px solid #000;
-  color: #000;
-}
-.lilCoinsOfferTextWrapper,
-.lilCoinsOfferTitle,
-.lilCoinsOfferContent {
-  padding: 0.5rem 0;
-  align-items: center;
-}
-.lilCoinsOfferTextWrapper {
-  display: flex;
-  justify-content: start;
-  align-items: center;
-}
-.lilCoinsOfferContent {
-  display: flex;
-  justify-content: center;
-  gap: 0.25rem;
-}
-.lilCoinsOfferTextWrapper input {
-  padding: 0.25rem 0.5rem;
-  height: 100%;
-  width: 90%;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-  color: #fff;
-  border: #fff;
-}
-.lilCoinsOfferTextWrapper input::placeholder {
-  color: #fff;
-}
-.lilCoinsOfferExplanation {
-  margin-top: 2rem;
-  font-size: 14px;
-  color: #000;
-  opacity: 0.8;
-}
-.lilCoinsShopSectionTitle {
-  margin-bottom: 1rem;
-}
-/*Desktop*/
-@media screen and (min-width: 768px) {
-  .lilCoinsOfferMain {
-    display: grid;
-    grid-template-columns: 2fr 1fr 3fr 1fr;
-    grid-template-rows: 45px;
-    row-gap: 0.5rem;
-    align-items: center;
-  }
-  .lilCoinsOfferContent {
-    justify-content: start;
-  }
-  .lilCoinsOfferTextWrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-.lilCoinsEmailVerificationWrapper {
-  display: flex;
-  gap: 0.5rem;
-}
-.lilCoinsEmailUnverifiedWrapper {
-  display: flex;
-  gap: 0.5rem;
-  margin-right: 1rem;
-}
-.lilCoinsOfferEmailEditBtn {
-  background: transparent;
-  border: none;
-  color: #fff;
-  display: flex;
-  align-items: center;
-}
-.lilCoinsOfferEmailEditBtn i {
-  font-size: 16px;
-}
-.lilcoinsSocialWrapper {
-  display: flex;
-  align-items: center;
-}
 .loader {
   display: flex;
   justify-content: center;
@@ -1287,7 +1113,7 @@ textarea {
   justify-content: center;
   align-items: start;
   overflow: hidden;
-  max-width: 100vw;
+  height: 100vh;
 }
 .modalPopup {
   z-index: 50;
@@ -2077,7 +1903,111 @@ textarea {
   margin-top: 1rem;
 }
 
-/* Lil COINS Section */
+
+
+/* Ranking Section */
+.rankingContentWrapper {
+  margin-top: 2rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  min-width: 300px;
+}
+.rankingNavWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.rankingTab {
+  opacity: 0.6;
+  cursor: pointer;
+}
+.rankingTab.active {
+  opacity: 1;
+}
+.rankingContent {
+  display: none;
+}
+.rankingContent.active {
+  display: flex;
+  flex-direction: column;
+}
+.topTenRankingItem {
+  margin: 0.25rem 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Footer */
+footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--dark);
+  color: #fff;
+}
+.footerContentWrapper {
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+.footerMenu {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  row-gap: 0.5rem;
+}
+.footerSocialsIconsWrapper {
+  height: 52px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.footerSocialsIconsWrapper img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+/*Desktop*/
+@media screen and (min-width: 768px) {
+  .footerMenu {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+.footerMenuItem a {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.4s;
+  font-size: 16px;
+}
+.footerMenuItem a:hover {
+  color: #dddddd;
+}
+.errorTxt {
+  color: #000;
+  text-align: center;
+}
+.hidden {
+  display: none;
+}
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
 .lilCoinsContentWrapper {
   display: flex;
   flex-direction: column;
@@ -2221,105 +2151,176 @@ textarea {
   justify-content: space-between;
 }
 
-/* Ranking Section */
-.rankingContentWrapper {
-  margin-top: 2rem;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  color: #fff;
-  min-width: 300px;
-}
-.rankingNavWrapper {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-.rankingTab {
-  opacity: 0.6;
-  cursor: pointer;
-}
-.rankingTab.active {
-  opacity: 1;
-}
-.rankingContent {
-  display: none;
-}
-.rankingContent.active {
-  display: flex;
-  flex-direction: column;
-}
-.topTenRankingItem {
-  margin: 0.25rem 0;
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-/* Footer */
-footer {
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: var(--dark);
-  color: #fff;
-}
-.footerContentWrapper {
-  display: flex;
+.lilCoinsContentWrapper {
   padding: 1rem;
+  display: flex;
   flex-direction: column;
   align-items: center;
-}
-.footerMenu {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  justify-items: center;
-  row-gap: 0.5rem;
+  max-width: 600px;
+  color: #fff;
 }
-.footerSocialsIconsWrapper {
-  height: 52px;
-  align-items: center;
+.lilCoinsTitleWrapper {
+  width: 100%;
   display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 16px;
   justify-content: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-}
-.footerSocialsIconsWrapper img {
-  width: 50px;
-  height: 50px;
-  cursor: pointer;
+  margin-bottom: 2.5rem;
+  opacity: 0.6;
 }
 /*Desktop*/
 @media screen and (min-width: 768px) {
-  .footerMenu {
+  .lilCoinsContentWrapper {
+    padding: 0;
+    margin-top: 0;
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-bottom: 0.5rem;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    color: #fff;
   }
 }
-.footerMenuItem a {
-  text-decoration: none;
-  color: #fff;
+
+.lilCoinsUserBalanceWrapper {
+  width: 100%;
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+.lilCoinsUserBalanceDisplay {
+  margin-left: 0.25rem;
+}
+.lilCoinsDescriptionWrapper {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+.lilCoinsShopWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lilCoinsShopMsgWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-top: 0.75rem;
+}
+.lilCoinsOfferWraper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding: 2rem;
+  color: #000;
+  background-color: #fff;
+  opacity: 0.9;
+  border-radius: 10px;
+}
+.lilCoinsOfferMain {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 45px 45px;
+  width: 100%;
+}
+.lilCoinsOfferTitle {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.lilCoinsOfferBtn {
+  border-radius: 10px;
+  margin: 0.25rem 0;
   cursor: pointer;
-  transition: 0.4s;
+  height: 80%;
+  background: #000;
+  color: #fff;
+}
+.lilCoinsOfferBtn.inactive {
+  background: transparent;
+  border: 1px solid #000;
+  color: #000;
+}
+.lilCoinsOfferTextWrapper,
+.lilCoinsOfferTitle,
+.lilCoinsOfferContent {
+  padding: 0.5rem 0;
+  align-items: center;
+}
+.lilCoinsOfferTextWrapper {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+.lilCoinsOfferContent {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+}
+.lilCoinsOfferTextWrapper input {
+  padding: 0.25rem 0.5rem;
+  height: 100%;
+  width: 90%;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  color: #fff;
+  border: #fff;
+}
+.lilCoinsOfferTextWrapper input::placeholder {
+  color: #fff;
+}
+.lilCoinsOfferExplanation {
+  margin-top: 2rem;
+  font-size: 14px;
+  color: #000;
+  opacity: 0.8;
+}
+.lilCoinsShopSectionTitle {
+  margin-bottom: 1rem;
+}
+/*Desktop*/
+@media screen and (min-width: 768px) {
+  .lilCoinsOfferMain {
+    display: grid;
+    grid-template-columns: 2fr 1fr 3fr 1fr;
+    grid-template-rows: 45px;
+    row-gap: 0.5rem;
+    align-items: center;
+  }
+  .lilCoinsOfferContent {
+    justify-content: start;
+  }
+  .lilCoinsOfferTextWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+.lilCoinsEmailVerificationWrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+.lilCoinsEmailUnverifiedWrapper {
+  display: flex;
+  gap: 0.5rem;
+  margin-right: 1rem;
+}
+.lilCoinsOfferEmailEditBtn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+.lilCoinsOfferEmailEditBtn i {
   font-size: 16px;
 }
-.footerMenuItem a:hover {
-  color: #dddddd;
-}
-.errorTxt {
-  color: #000;
-  text-align: center;
-}
-.hidden {
-  display: none;
-}
-.grecaptcha-badge {
-  visibility: hidden;
+.lilcoinsSocialWrapper {
+  display: flex;
+  align-items: center;
 }

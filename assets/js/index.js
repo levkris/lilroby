@@ -14,6 +14,7 @@ const rankingTab = document.getElementById("ranking-tab");
 const lilcoinsTab = document.getElementById("lilcoins-tab");
 const printsTimelineWrapper = document.getElementById("prints-timeline-wrapper");
 const rankingWrapper = document.getElementById("ranking-wrapper");
+const lilcoinsWrapper = document.getElementById("lilcoins-wrapper");
 const printsCountRankingTab = document.getElementById("prints-count-ranking-tab");
 const lilcoinsCountRankingTab = document.getElementById("lilcoins-count-ranking-tab");
 const upvotesRankingTab = document.getElementById("upvotes-ranking-tab");
@@ -28,6 +29,7 @@ timelineTab.addEventListener("click", () => {
     lilcoinsTab.classList.remove("active");
     printsTimelineWrapper.classList.add("active");
     rankingWrapper.classList.remove("active");
+    lilcoinsWrapper.classList.remove("active");
 })
 
 rankingTab.addEventListener("click", () => {
@@ -36,8 +38,18 @@ rankingTab.addEventListener("click", () => {
     lilcoinsTab.classList.remove("active");
     printsTimelineWrapper.classList.remove("active");
     rankingWrapper.classList.add("active");
+    lilcoinsWrapper.classList.remove("active");
+
 })
 
+lilcoinsTab.addEventListener("click", () => {
+    timelineTab.classList.remove("active");
+    rankingTab.classList.remove("active");
+    lilcoinsTab.classList.add("active");
+    printsTimelineWrapper.classList.remove("active");
+    rankingWrapper.classList.remove("active");
+    lilcoinsWrapper.classList.add("active");
+})
 
 getRankings('prints_count')
 
@@ -351,6 +363,12 @@ form.addEventListener('submit', async (e) => {
         if (result.error) {
             printInfoMsg.innerHTML = result.error;
             printDisplayCard.classList.add("rotate");
+
+            document.querySelector('#print-title-input').value = "";
+            document.querySelector('#print-txt-input').value = "";
+            document.querySelector('#print-name-input').value = "";
+            selectedCustomImg = null;
+
             return;
         } else if (result.success) {
             printInfoMsg.classList.remove("active");
