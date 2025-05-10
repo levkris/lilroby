@@ -256,7 +256,7 @@ function fetchTimeline() {
             let postsHtml = "";
             data.posts.forEach(post => {
                 let postHtml = `
-                    <div class="timelinePrintjobWrapper" id="${post.id}">
+                    <div class="timelinePrintjobWrapper" id="${post.id}" style="color: #000;">
                         <div class="timelinePrintjobContent">
                             <img
                             class="timelinePrintjobImg"
