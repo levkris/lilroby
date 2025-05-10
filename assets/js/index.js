@@ -247,15 +247,10 @@ form.addEventListener('submit', async (e) => {
 
 
 function fetchTimeline(offset = 0) {
-    let header = "";
-    if (loggedIn) {
-        header = "Authorization: Bearer " + access_token;
-    }
-    fetch("https://wokki20.nl/lilroby/api/v1/timeline?offset=" + offset, {
+    const headers = loggedIn ? { 'Authorization': `Bearer ${access_token}` } : {};
+    fetch(`https://wokki20.nl/lilroby/api/v1/timeline?offset=${offset}`, {
         method: "GET",
-        headers: {
-            header
-        }
+        headers: headers
     })
     .then(response => response.json())
     .then(data => {
