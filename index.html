@@ -6,8 +6,183 @@
     <title>Lilroby</title>
     <link rel="stylesheet" href="assets/styles/main.css">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
-    <h1>You are early, come back later</h1>
+    <header>
+      <div class="headerContent">
+        <div class="headerLeft">
+          <img src="assets/branding/lil-icon.png" style="height: 34px; width: 34px; user-select: none;">
+          <div class="headerLeftText">Roby REVIVE</div>
+        </div>
+        <div class="headerRight">
+          <button class="headerAccountBtn" onclick="window.location.href='login.html'">login</button>
+          <button class="hamburgerMenu" onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))" aria-label="Main Menu">
+            <svg width="46" height="46" viewBox="0 0 100 100">
+              <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path>
+              <path class="line line2" d="M 20,50 H 80"></path>
+              <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+
+    <section class="introSection">
+      <div class="sidebarMenuWrapper">
+        <div class="sidebarMenuItems">
+          <button class="sidebarMenuItem" id="sidebar-menu-profile-btn">
+            <img src="assets/branding/lilroby-icon.PNG" style="width: 25px; height: 25px" alt="lil coin icon">
+            profile
+          </button>
+
+          <button class="sidebarMenuItem" id="sidebar-menu-lilcoins-btn">
+            <img src="assets/branding/lilcoin-wbr.png" style="width: 25px; height: 25px" alt="lil coin icon">
+            lilcoins
+          </button>
+          <button class="sidebarMenuItem" id="sidebar-menu-trees-btn">
+            <i class="material-icons">park</i> trees
+          </button>
+          <button class="sidebarMenuItem" id="sidebar-menu-prints-btn">
+            <i class="material-icons">receipt</i> prints
+          </button>
+        </div>
+      </div>
+      <div class="introSectionContentWrapper">
+        <div class="printCreationFormWrapper">
+          <div class="printInteractionFormWrapper">
+            <div class="interactionElementActiveOptionDisplay print flip" id="print-display-card">
+              <div class="front">
+                <button class="interactionElementInfoTriggerBtn" id="print-info-trigger">
+                  <i class="material-icons">info</i>
+                </button>
+
+                <button class="printInteractionCustomImgBtn">
+                  <div class="interactionElementPricetagWrapper">
+                    <div class="interactionElementPricetagTxt" id="print-element-pricetag">
+                      10
+                    </div>
+                    <img src="assets/branding/lilcoin-wbr.png" style="width: 25px; height: 25px" alt="lil coin icon">
+                  </div>
+                  <div class="printInteractionCustomImgBtnTxt active">img</div>
+                  <img class="printInteractionImgField" id="print-interaction-img-field" alt="">
+                </button>
+                <input type="file" accept="image/*" class="hiddenImageInput" id="hidden-print-interaction-img-input">
+              </div>
+              <div class="back">
+                <div class="interactionElementInfo">
+                  <button class="interactionElementInfoBackBtn" id="print-info-back-btn">
+                    <i class="material-icons">arrow_back</i>
+                  </button>
+                  <div class="interactionElementInfoTitle">Print</div>
+                  <div class="interactionElementInfoContent">
+                    <div class="interactionElementInfoTextWrapper active" id="print-info-msg">
+                      <div class="interactionElementInfoText active">
+                        Print your content with lilRoby &amp; get a chance to win
+                        the Jackpot.
+                      </div>
+                      <div class="interactionElementInfoText withImg" id="print-jackpot-info">Jackpot: 9650 <img src="assets/branding/lilcoin-bb.png" style="width: 25px; height: 25px"></div>
+                    </div>
+                    <div class="interactionElementInfoTextWrapper" id="print-success-msg">
+                      <div class="printSubmitSuccessTitle info" id="print-success-msg-title">
+                        Printjob submitted successfully!
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="printSubmitSuccessMessageWrapper" id="print-interaction-submit-success-msg">
+              <div class="printSubmitSuccessTitle">Printjobs Jackpot:</div>
+              <div class="printSubmitSuccessText" id="after-print-jp-result-txt">
+                Result: try again
+              </div>
+            </div>
+            <form class="printCreationForm" action="submit" id="new-print-form">
+              <input type="text" name="title" placeholder="Print title" id="print-title-input" maxlength="24" required="">
+              <div class="printFormTextareaWrapper" id="print-txt-input-wrapper">
+                <div class="textareaPricetagWrapper">
+                  <div class="textareaPricetagTxt" id="textarea-element-pricetag">
+                    +5
+                  </div>
+                  <img src="assets/branding/lilcoin-wbr.png" style="width: 20px; height: 20px" alt="lil coin icon">
+                </div>
+                <textarea placeholder="Text you want to print..." name="printText" class="printTextInput" id="print-txt-input" cols="20" rows="3" maxlength="200" resize="none"></textarea>
+              </div>
+              <button type="button" class="printAddTxtWrapper" id="print-add-txt-btn">
+                add text
+              </button>
+              <input type="text" name="name" id="print-name-input" placeholder="Anonymus" maxlength="16">
+
+              <div class="errorTxt" id="submit-print-error-txt"></div>
+              <button type="submit" class="submitPrintBtn active" id="submit-print-btn">
+                Print now
+              </button>
+            </form>
+            <button type="button" class="reactivateFormBtn" id="btn-reactivate-submit-form">
+              Print again
+            </button>
+          </div>
+          <div class="printSubmitSuccessMessageWrapper" id="printjob-submit-success-msg">
+            <div class="printSubmitSuccessTitle">
+              Printjob submitted successfully!
+            </div>
+            <div class="printSubmitSuccessText">
+              Print again, or check out your print in the
+              <a href="https://discord.gg/fUr9ATf5nb" target="_blank">discord</a>
+              server.
+            </div>
+          </div>
+
+          <button type="button" class="reactivateFormBtn" id="btn-reactivate-submit-form">
+            Print again
+          </button>
+        </div>
+      </div>
+      <div class="introSectionIconTextWrapper printsCounter">
+        <i class="material-icons">receipt</i>
+        <div class="introSectionText" id="intro-section-prints-counter">0</div>
+      </div>
+      <section class="mainTabsNavSection">
+        <div class="tabsWrapper" id="main-section-nav-tabs-wrapper">
+          <div class="tab active" id="prints-timeline-tab">timeline</div>
+          <div class="tab" id="ranking-tab">ranking</div>
+          <div class="tab lilCoin" id="lilcoins-tab">
+            <img src="assets/branding/lilcoin-wbr.png" style="width: 25px; height: 25px" alt="lil coin icon">
+            Coins
+          </div>
+        </div>
+      </section>
+      <div class="sidebarMenuWrapper">
+        <div class="sidebarMenuItems">
+          <button class="sidebarMenuItem" id="sidebar-menu-profile-btn">
+            <img src="assets/branding/lilroby-icon.PNG" style="width: 25px; height: 25px" alt="lil coin icon">
+            profile
+          </button>
+          <button class="sidebarMenuItem" id="sidebar-menu-timeline-btn">
+            <i class="material-icons">receipt</i> timeline
+          </button>
+          <button class="sidebarMenuItem" id="sidebar-menu-lilcoins-btn">
+            <img src="assets/branding/lilcoin-wbr.png" style="width: 25px; height: 25px" alt="lil coin icon">
+            lilcoins
+          </button>
+          <button class="sidebarMenuItem" id="sidebar-menu-livestream-btn">
+            <i class="material-icons">smart_display</i> livestream
+          </button>
+          <button class="sidebarMenuItem" id="sidebar-menu-rankings-btn">
+            <i class="material-icons">stars</i> rankings
+          </button>
+          <button class="sidebarMenuItem" id="sidebar-menu-trees-btn">
+            <i class="material-icons">park</i> trees
+          </button>
+          <button class="sidebarMenuItem" id="sidebar-menu-contact-btn">
+            <i class="material-icons">contact_support</i> contact
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lilroby</title>
+    <link rel="stylesheet" href="assets/styles/main.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+    <header>
+      <div class="headerContent">
+        <div class="headerLeft" onclick="window.location.href='/'">
+          <img src="assets/branding/lil-icon.png" style="height: 34px; width: 34px; user-select: none;">
+          <div class="headerLeftText">Roby REVIVE</div>
+        </div>
+        <div class="headerRight">
+          <button class="hamburgerMenu" onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))" aria-label="Main Menu">
+            <svg width="46" height="46" viewBox="0 0 100 100">
+              <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path>
+              <path class="line line2" d="M 20,50 H 80"></path>
+              <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+
+    <section class="introSection">
+      <div class="sidebarMenuWrapper">
+        <div class="sidebarMenuItems">
+
+          <button class="sidebarMenuItem" id="sidebar-menu-lilcoins-btn">
+            <img src="assets/branding/lilcoin-wbr.png" style="width: 25px; height: 25px" alt="lil coin icon">
+            lilcoins
+          </button>
+          <button class="sidebarMenuItem" id="sidebar-menu-trees-btn">
+            <i class="material-icons">park</i> trees
+          </button>
+          <button class="sidebarMenuItem" id="sidebar-menu-prints-btn">
+            <i class="material-icons">receipt</i> prints
+          </button>
+        </div>
+      </div>
+      <div class="introSectionContentWrapper" style="height: calc(100vh - 110px);">
+        <div class="printCreationFormWrapper">
+          <div class="printInteractionFormWrapper">
+            
+            <form class="createAccountForm" id="create-account-form" autocomplete="off">
+              <h2>Create an account</h2>
+              <label for="username">Username:</label>
+              <input type="text" name="username" id="username" placeholder="John Doe" maxlength="20" required minlength="3" autocomplete="off" autocorrect="off" autocapitalize="off">
+              <label for="email">Email:</label>
+              <input type="email" name="email" id="email" placeholder="johndoe@example.com" required autocomplete="off" autocorrect="off" autocapitalize="off">
+              <label for="password">Password:</label>
+              <input type="password" name="password" id="password" placeholder="MyPassword123" required minlength="8" autocomplete="off" autocorrect="off" autocapitalize="off">
+              <div class="errorTxt" id="error-create-account"></div>
+              <button class="submitPrintBtn active" id="create-account-btn">
+                Create account
+              </button>
+              <p>Already have an account? <a href="login.html">Login</a> here.</p>
+            </form>
+            
+          </div>
+        </div>
+      </div>
+      
+    </section>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/create.js"></script>
+</body>
+</html>
