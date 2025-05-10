@@ -1447,6 +1447,7 @@ textarea {
   min-height: 220px;
   max-height: 500px;
   overflow-y: auto;
+  color: #000;
 }
 /*Desktop*/
 @media screen and (min-width: 768px) {

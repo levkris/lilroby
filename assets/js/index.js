@@ -62,13 +62,13 @@ function getProfile() {
             headerAccountBtn.addEventListener("click", () => {
                 let profilePopup = `
                 <div class="modalUserStateWrapper">
-                    <div class="modalAccount modalPopup">
+                    <div class="modalAccount modalPopup" id="modal-account">
                         <div class="modalHeader">
                         <div class="modalTitle">Account</div>
                         <div class="modalAccountHeaderRight">
                             <button class="modalAccountLogoutBtn">Logout</button>
-                            <button class="modalCloseBtn">
-                            <i class="material-icons">close</i>
+                            <button class="modalCloseBtn" id="modal-close-btn" onclick="this.parentElement.parentElement.parentElement.remove();">
+                            <i class="material-symbols-rounded">close</i>
                             </button>
                         </div>
                         </div>
@@ -83,15 +83,15 @@ function getProfile() {
                             </div>
                             <div class="editUsernameBtnsWrapper">
                                 <button class="editUsernameBtnN" id="edit-username-cancel-btn">
-                                <i class="material-icons">close</i>
+                                <i class="material-symbols-rounded">close</i>
                                 </button>
                                 <button class="editUsernameBtnN" id="edit-username-approve-btn">
-                                <i class="material-icons">check</i>
+                                <i class="material-symbols-rounded">check</i>
                                 </button>
                             </div>
                             </div>
                             <button class="editUsernameBtn active" id="edit-username-btn">
-                            <i class="material-icons">edit</i>
+                            <i class="material-symbols-rounded">edit</i>
                             </button>
                         </div>
                         <div class="modalAccountInfo lilCoins">
@@ -104,7 +104,7 @@ function getProfile() {
                         <div class="userPrintsWrapper">
                             <div class="userExtraDataIntro">
                             <div class="userModalTitle" id="modal-account-info-prints-count">prints: 172</div>
-                            <button class="modalExtraDataExpandBtn" id="modal-account-info-prints-btn"><i class="material-icons">expand_more</i></button>
+                            <button class="modalExtraDataExpandBtn" id="modal-account-info-prints-btn"><i class="material-symbols-rounded">expand_more</i></button>
                             </div>
                             <div class="userPrintItems hidden" id="modal-account-info-prints"></div>
                         </div>
@@ -113,14 +113,14 @@ function getProfile() {
                             <div class="modalAccountInfo" id="modal-account-info-email">l.vwijk100@outlook.com</div>
                             <div class="emailUnverifiedWrapper hidden">
                             <button class="modalAccountInfoEditBtn" id="edit-email-btn">
-                                <i class="material-icons">edit</i>
+                                <i class="material-symbols-rounded">edit</i>
                             </button>
                             <button class="modalAccountInfoVerifyBtn" id="verify-email-btn">
                                 verify
                             </button>
                             </div>
                             <div class="emailVerifiedWrapper">
-                            <i class="material-icons">task_alt</i>
+                            <i class="material-symbols-rounded">task_alt</i>
                             </div>
                         </div>
                         </div>
