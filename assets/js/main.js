@@ -18,7 +18,7 @@ const sideMenuTreesBtn = document.getElementById("sidebar-menu-trees-btn");
 if (sideMenuProfileBtn) {
   sideMenuProfileBtn.addEventListener("click", () => {
     hamburgerMenu.click();
-    headerAccountBtn.click();
+    document.getElementById("header-account-btn").click();
   });
 }
 sideMenuPrintsBtn.addEventListener("click", () => {

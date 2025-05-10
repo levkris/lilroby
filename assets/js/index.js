@@ -56,7 +56,7 @@ function getProfile() {
         if (data.status === "success") {
             const headerAccountBtn = document.getElementById("header-account-btn");
             headerAccountBtn.outerHTML = `
-                <button class="headerAccountBtn"><div id="header-btn-lilcoins-count" class="headerBtnLilcoinsCount">${data.profile.lilcoins}</div><img src="assets/branding/lilcoin-wbr.png" style="width: 25px; height: 25px;"></button>
+                <button class="headerAccountBtn" id="header-account-btn"><div id="header-btn-lilcoins-count" class="headerBtnLilcoinsCount">${data.profile.lilcoins}</div><img src="assets/branding/lilcoin-wbr.png" style="width: 25px; height: 25px;"></button>
             `;
 
             headerAccountBtn.addEventListener("click", () => {
