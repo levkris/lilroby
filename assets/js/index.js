@@ -412,7 +412,7 @@ function fetchTimeline(offset = 0) {
             let postsHtml = "";
             data.posts.forEach(post => {
                 let postHtml = "";
-                if (data.status === "under_review") {
+                if (post.status === "under_review") {
                 
                     postHtml = `
                     <div class="timelinePrintjobWrapper" id="${post.id}" style="color: #000;">
