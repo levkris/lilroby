@@ -8,6 +8,7 @@ const printDisplayCard = document.getElementById("print-display-card");
 const printInfoMsg = document.getElementById("print-info-msg");
 const printSuccessMsg = document.getElementById("print-success-msg");
 const printSuccessMsgTitle = document.getElementById("print-success-msg-title");
+const introSectionPrintsCounter = document.getElementById("intro-section-prints-counter");
 let lilcoins = 0;
 
 let loggedIn = false;
@@ -250,6 +251,8 @@ function fetchTimeline() {
     .then(response => response.json())
     .then(data => {
         if (data.success) {
+            introSectionPrintsCounter.innerHTML = data.total_posts;
+
             const timelineContainer = document.getElementById("prints-timeline-items");
             let postsHtml = "";
             data.posts.forEach(post => {
