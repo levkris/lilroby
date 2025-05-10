@@ -21,8 +21,8 @@ loginForm.addEventListener('submit', (e) => {
         if (data.success == true) {
             localStorage.setItem("access_token", data.access_token);
             localStorage.setItem("refresh_token", data.refresh_token);
-            localStorage.setItem("access_token_expires_at", data.access_token_expires);
-            localStorage.setItem("refresh_token_expires_at", data.refresh_token_expires);
+            localStorage.setItem("access_token_expires_at", data.access_token_expires_at);
+            localStorage.setItem("refresh_token_expires_at", data.refresh_token_expires_at);
             window.location.href = "/";
         } else {
             errorTxt.innerText = data.error;
