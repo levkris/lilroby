@@ -1,3 +1,4 @@
+const mainTabsNavSection = document.querySelector(".mainTabsNavSection");
 
 
 const hamburgerMenu = document.querySelector(".hamburgerMenu");

@@ -20,16 +20,7 @@ const upvotesRankingTab = document.getElementById("upvotes-ranking-tab");
 const printsCountRankingContent = document.getElementById("prints-count-ranking-content");
 const lilcoinsCountRankingContent = document.getElementById("lilcoins-count-ranking-content");
 const upvotesRankingContent = document.getElementById("upvotes-ranking-content");
-const sideMenuPrintsBtn = document.getElementById("sidebar-menu-prints-btn");
-const hamburgerMenu = document.querySelector(".hamburgerMenu");
-const mainTabsNavSection = document.querySelector(".mainTabsNavSection");
 
-
-sideMenuPrintsBtn.addEventListener("click", () => {
-  mainTabsNavSection.scrollIntoView({ behavior: "smooth" });
-  hamburgerMenu.click();
-  printsCountRankingTab.click();
-});
 
 timelineTab.addEventListener("click", () => {
     timelineTab.classList.add("active");
