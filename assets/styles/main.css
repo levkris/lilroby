@@ -1286,6 +1286,8 @@ textarea {
   margin-top: 4.5rem;
   justify-content: center;
   align-items: start;
+  overflow: hidden;
+  max-width: 100vw;
 }
 .modalPopup {
   z-index: 50;
