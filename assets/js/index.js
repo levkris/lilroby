@@ -6,20 +6,23 @@ const refresh_token_expires_at = localStorage.getItem("refresh_token_expires_at"
 let loggedIn = false;
 
 function getAmsterdamTime() {
-    return new Date().toLocaleString("en-US", { timeZone: "Europe/Amsterdam" });
+    return new Date(new Date().toLocaleString("en-US", { timeZone: "Europe/Amsterdam" }));
 }
 
 function accessTokenValid() {
-    const expiresAt = parseInt(localStorage.getItem("access_token_expires_at"), 10);
-    const now = new Date(getAmsterdamTime()).getTime();
+    const expiresAtStr = localStorage.getItem("access_token_expires_at");
+    const expiresAt = new Date(expiresAtStr).getTime();
+    const now = getAmsterdamTime().getTime();
     return now < expiresAt;
 }
 
 function refreshTokenValid() {
-    const expiresAt = parseInt(localStorage.getItem("refresh_token_expires_at"), 10);
-    const now = new Date(getAmsterdamTime()).getTime();
+    const expiresAtStr = localStorage.getItem("refresh_token_expires_at");
+    const expiresAt = new Date(expiresAtStr).getTime();
+    const now = getAmsterdamTime().getTime();
     return now < expiresAt;
 }
+
 
 function doCorrespondingAction() {
     if (accessTokenValid() && refreshTokenValid()) {
