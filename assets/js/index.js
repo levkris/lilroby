@@ -120,12 +120,12 @@ function getProfile() {
 
                         <div class="userPrintsWrapper">
                             <div class="userExtraDataIntro">
-                            <div class="userModalTitle" id="modal-account-info-prints-count">prints: 0</div>
+                            <div class="userModalTitle" id="modal-account-info-prints-count">prints: ${data.profile.prints}</div>
                             <button class="modalExtraDataExpandBtn" id="modal-account-info-prints-btn"><i class="material-symbols-rounded">expand_more</i></button>
                             </div>
                             <div class="userPrintItems hidden" id="modal-account-info-prints"></div>
                         </div>
-                        <div class="modalAccountInfo" id="modal-account-info-upvotes">upvotes: 0</div>
+                        <div class="modalAccountInfo" id="modal-account-info-upvotes">upvotes: ${data.profile.upvotes}</div>
                         <div class="modalAccountInfoEditWrapper">
                             <div class="modalAccountInfo" id="modal-account-info-email">${data.profile.email}</div>
                             
