@@ -96,9 +96,6 @@ function getProfile() {
                                 </button>
                             </div>
                             </div>
-                            <button class="editUsernameBtn active" id="edit-username-btn">
-                            <i class="material-symbols-rounded">edit</i>
-                            </button>
                         </div>
                         <div class="modalAccountInfo lilCoins">
                             <div class="lilCoinsUserBalanceTxt">balance:</div>
