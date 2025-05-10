@@ -244,14 +244,23 @@ form.addEventListener('submit', async (e) => {
 });
 
 
-function fetchTimeline() {
-    fetch("https://wokki20.nl/lilroby/api/v1/timeline", {
+function fetchTimeline(offset = 0) {
+    fetch("https://wokki20.nl/lilroby/api/v1/timeline?offset=" + offset, {
         method: "GET"
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             introSectionPrintsCounter.innerHTML = data.total_posts;
+
+            if (data.posts.length <= data.total_posts) {
+                document.getElementById("newest-prints").remove();
+            } else {
+                document.getElementById("newest-prints").style.display = "block";
+                document.getElementById("newest-prints").addEventListener("click", () => {
+                    fetchTimeline(offset + 25);
+                })
+            }
 
             const timelineContainer = document.getElementById("prints-timeline-items");
             let postsHtml = "";
@@ -284,7 +293,7 @@ function fetchTimeline() {
                 `;
                 postsHtml += postHtml;
             });
-            timelineContainer.innerHTML = postsHtml;
+            timelineContainer.innerHTML += postsHtml;
         }
     })
     .catch(error => {
