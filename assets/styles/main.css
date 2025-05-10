@@ -1563,3 +1563,761 @@ textarea {
   cursor: pointer;
   font-size: 16px;
 }
+
+.mainSection {
+  padding: 4rem 2rem 2rem 2rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: #1c303d;
+  min-height: 400px;
+}
+@media screen and (min-width: 768px) {
+  .mainSection {
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: #1c303d;
+    min-height: 400px;
+  }
+}
+.mainSectionContent {
+  display: none;
+}
+.mainSectionContent.active {
+  display: flex;
+  flex-direction: column;
+}
+.mainSectionTitle {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  opacity: 0.6;
+}
+.printCreationFormWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  border-radius: 10px;
+  padding: 1rem;
+  background: #fff;
+}
+
+.formImgSliderWrapper {
+  margin: 1rem 0 0.5rem 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}
+.sliderImg {
+  display: none;
+}
+.sliderImg.active {
+  display: block;
+  width: 168px;
+  height: auto;
+}
+.sliderCustomImgBtn {
+  display: none;
+}
+.sliderCustomImgBtn.active {
+  border: none;
+  padding: 0;
+  position: relative;
+  display: block;
+  width: 168px;
+  height: auto;
+  min-height: 168px;
+  background: transparent;
+  font-family: "Courier New", Courier, "Lucida Console", Consolas, monospace;
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.3);
+}
+.sliderCustomImgBtnTxt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.sliderCustomImgBtn.active img {
+  display: block;
+  width: 168px;
+  height: auto;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+/* big phone */
+@media screen and (min-width: 448px) {
+  .sliderImg.active {
+    width: 260px;
+    height: auto;
+  }
+  .sliderCustomImgBtn.active {
+    width: 260px;
+    height: auto;
+    min-height: 260px;
+  }
+  .sliderCustomImgBtn.active img {
+    width: 260px;
+    height: auto;
+    max-height: 462px;
+  }
+}
+
+.hiddenImageInput {
+  display: none;
+}
+.formImgSliderArrow {
+  background: transparent;
+  border: none;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  color: #000;
+}
+.formImgSliderArrow.left {
+  left: 0;
+}
+.formImgSliderArrow.right {
+  right: 0;
+}
+.printCreationForm {
+  display: flex;
+  flex-direction: column;
+}
+.printCreationFormWrapper form input {
+  border: none;
+  text-align: center;
+  margin: 0.25rem 0;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 0;
+  font-family: "Courier New", Courier, "Lucida Console", Consolas, monospace;
+}
+.printCreationFormWrapper form input::placeholder {
+  color: #000;
+}
+.printCreationFormWrapper form textarea {
+  border: none;
+  text-align: center;
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+  font-family: "Courier New", Courier, "Lucida Console", Consolas, monospace;
+}
+.printCreationFormWrapper form textarea::placeholder {
+  color: #000;
+}
+.printCreationFormWrapper form .submitPrintBtn {
+  display: none;
+}
+.printCreationFormWrapper form .submitPrintBtn.active {
+  color: #fff;
+  background: var(--dark);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 1rem;
+  margin: 0.5rem 0 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-size: 18px;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.printCreationFormWrapper form .submittingPrintMessageWrapper {
+  display: none;
+}
+.printCategoryTabsWrapper {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0.5rem 0;
+}
+.printCategoryTab {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 10px;
+  background: #fff;
+  color: #000;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+}
+.printCategoryTab.active {
+  background: var(--dark);
+  color: #fff;
+}
+/* desktop */
+@media screen and (min-width: 768px) {
+  .printCreationFormWrapper {
+    width: 384px;
+  }
+  .printCategoryTab {
+    padding: 0.5rem 1rem;
+  }
+}
+
+.printSubmitSuccessMessageWrapper {
+  display: none;
+}
+.printSubmitSuccessMessageWrapper.active {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  margin-top: 0.5rem;
+  width: 100%;
+  gap: 0.5rem;
+  color: #000;
+}
+.printSubmitSuccessTitle.info {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.printSubmitSuccessTitle {
+  font-weight: bold;
+}
+.printSubmitSuccessText {
+  max-width: 224px;
+  display: inline;
+}
+.printSubmitSuccessText.withImg {
+  display: flex;
+  align-items: center;
+}
+.reactivateFormBtn {
+  display: none;
+}
+.reactivateFormBtn.active {
+  color: #fff;
+  background: var(--dark);
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 1rem;
+  margin: 1rem 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  font-size: 18px;
+  transition: 0.2s;
+}
+
+/* While submitting new print */
+.printCreationFormWrapper form.submitting input {
+  box-shadow: none;
+}
+.printCreationFormWrapper form.submitting textarea {
+  box-shadow: none;
+}
+/* .printCreationFormWrapper form.submitting .submitPrintBtn.active {
+  display: none;
+} */
+
+.timelinePrintjobWrapper {
+  margin: 0;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Courier New", Courier, "Lucida Console", Consolas, monospace;
+}
+.timelinePrintjobWrapper.lil {
+  margin: 1rem 0 1rem 0;
+  padding: 0 1rem 0 1rem;
+}
+.printsTimelineItems {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+@media screen and (min-width: 864px) {
+  .printsTimelineItems {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (min-width: 1296px) {
+  .printsTimelineItems {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media screen and (min-width: 1296px) {
+  .printsTimelineItems {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media screen and (min-width: 1728px) {
+  .printsTimelineItems {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+.timelinePrintjobContent {
+  padding: 2rem 0;
+  background: #fff;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.timelinePrintjobImg {
+  width: 320px;
+  height: auto;
+  max-height: 400px;
+}
+.printDecoSvg {
+  width: 288px;
+  height: 12px;
+}
+/* big phone */
+@media screen and (min-width: 448px) {
+  .printDecoSvg {
+    width: 384px;
+    height: 12px;
+  }
+  .timelinePrintjobContent {
+    padding: 2rem 0;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+/* desktop */
+@media screen and (min-width: 768px) {
+  .timelinePrintjobContent {
+    padding: 2rem 0;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+  }
+  .timelinePrintjobImg {
+    width: 320px;
+    height: auto;
+  }
+}
+
+.timelinePrintjobTitle {
+  margin: 2rem 0 1rem 0;
+  padding: 0 1rem;
+  text-align: center;
+  font-size: 24px;
+}
+.timelinePrintjobText {
+  padding: 0 1rem;
+  width: 100%;
+  word-wrap: break-word; /* Older browsers support */
+  overflow-wrap: break-word; /* Standard syntax */
+  text-align: center;
+}
+.timelinePrintjobName {
+  margin: 1rem 0 2rem 0;
+}
+.timelinePrintjobNr {
+  margin-bottom: 0.5rem;
+}
+.timelinePrintjobFooterWrapper {
+  margin-top: 0.5rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  color: #000;
+  background: #fff;
+  margin-top: 0.5rem;
+  padding: 1rem;
+
+  font-size: 30px;
+  line-height: 28px;
+}
+/* big phone */
+@media screen and (min-width: 448px) {
+  .timelinePrintjobFooterWrapper {
+    margin-top: 0.5rem;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    color: #000;
+    background: #fff;
+    margin-top: 0.5rem;
+    padding: 1rem;
+
+    font-size: 30px;
+    line-height: 28px;
+  }
+}
+.timelinePrintjobFooterRight {
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  gap: 0.25rem;
+  width: 100%;
+}
+.timelinePrintjobFooterCenter {
+  font-size: 24px;
+  line-height: 22px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  width: 100%;
+}
+.timelinePrintjobFooterLeft {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  width: 100%;
+}
+.timelinePrintjobFooterUpvoteBtn {
+  border: none;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+.timelinePrintjobFooterUpvoteBtn img {
+  width: 40px;
+  height: 40px;
+}
+.printsTimelineMoreBtn {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #fff;
+  cursor: pointer;
+}
+.printsTimelineMoreBtn:hover {
+  color: #dbdbdb;
+}
+.timelineUncheckedPrintjob {
+  width: 100%;
+  background: #fff;
+  color: #000;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.timelineUncheckedPrintjobText {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.printsManagementMenuWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin: 1rem 0;
+}
+.printsTab {
+  color: #fff;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.printsTab.active {
+  opacity: 1;
+}
+.printsSortMenuWrapper {
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 0.5rem;
+  justify-items: center;
+  padding: 0 2rem;
+}
+.printsSortTab {
+  color: #fff;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.printsSortTab.active {
+  opacity: 1;
+}
+.printsManagementWrapper {
+  display: none;
+}
+.printsManagementWrapper.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.printsManagementWrapper.active .errorTxt {
+  margin-top: 1rem;
+  color: #fff;
+}
+.printsSearchWrapper {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.printsSearchWrapper input {
+  width: 5rem;
+  text-align: center;
+}
+
+.printTimelineReviewCount {
+  text-align: center;
+  width: 100%;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+/* Lil COINS Section */
+.lilCoinsContentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  color: #fff;
+}
+.lilCoinsTitleWrapper {
+  width: 100%;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 16px;
+  justify-content: center;
+  margin-bottom: 2.5rem;
+  opacity: 0.6;
+}
+/*Desktop*/
+@media screen and (min-width: 768px) {
+  .lilCoinsContentWrapper {
+    margin-top: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    color: #fff;
+  }
+}
+
+.lilCoinsUserBalanceWrapper {
+  width: 100%;
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+.lilCoinsUserBalanceDisplay {
+  margin-left: 0.25rem;
+}
+.lilCoinsDescriptionWrapper {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 1rem;
+}
+.lilCoinsShopWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.lilCoinsOfferWraper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 45px 45px;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.2);
+}
+.lilCoinsOfferTitle {
+  display: flex;
+}
+.lilCoinsOfferBtn {
+  border-radius: 10px;
+  margin: 0.25rem 0;
+  cursor: pointer;
+}
+.lilCoinsOfferBtn.inactive {
+  background: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+}
+.lilCoinsOfferTextWrapper,
+.lilCoinsOfferTitle,
+.lilCoinsOfferContent {
+  padding: 0.5rem 0;
+  align-items: center;
+}
+.lilCoinsOfferContent {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+}
+/*Desktop*/
+@media screen and (min-width: 768px) {
+  .lilCoinsOfferWraper {
+    display: grid;
+    grid-template-columns: 2fr 1fr 3fr 1fr;
+    grid-template-rows: 45px;
+    row-gap: 0.5rem;
+  }
+  .lilCoinsOfferContent {
+    justify-content: start;
+  }
+}
+.lilCoinsEmailVerificationWrapper {
+  display: flex;
+  gap: 0.5rem;
+}
+.lilCoinsEmailUnverifiedWrapper {
+  display: flex;
+  gap: 0.5rem;
+  margin-right: 1rem;
+}
+.lilCoinsOfferEmailEditBtn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+}
+.lilCoinsOfferEmailEditBtn i {
+  font-size: 16px;
+}
+.lilcoinsSocialWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.separationLine {
+  border-bottom: 2px solid #fff;
+  margin: 1rem 0;
+}
+.lilCoinsRankingWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.lilCoinsRankingItems {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  width: 100%;
+}
+.lilcoinsRankingItem {
+  margin: 0.25rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Ranking Section */
+.rankingContentWrapper {
+  margin-top: 2rem;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  min-width: 300px;
+}
+.rankingNavWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.rankingTab {
+  opacity: 0.6;
+  cursor: pointer;
+}
+.rankingTab.active {
+  opacity: 1;
+}
+.rankingContent {
+  display: none;
+}
+.rankingContent.active {
+  display: flex;
+  flex-direction: column;
+}
+.topTenRankingItem {
+  margin: 0.25rem 0;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Footer */
+footer {
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--dark);
+  color: #fff;
+}
+.footerContentWrapper {
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: center;
+}
+.footerMenu {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  row-gap: 0.5rem;
+}
+.footerSocialsIconsWrapper {
+  height: 52px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.footerSocialsIconsWrapper img {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+/*Desktop*/
+@media screen and (min-width: 768px) {
+  .footerMenu {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+  }
+}
+.footerMenuItem a {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.4s;
+  font-size: 16px;
+}
+.footerMenuItem a:hover {
+  color: #dddddd;
+}
+.errorTxt {
+  color: #000;
+  text-align: center;
+}
+.hidden {
+  display: none;
+}
+.grecaptcha-badge {
+  visibility: hidden;
+}

@@ -238,3 +238,52 @@ form.addEventListener('submit', async (e) => {
         console.error('Error submitting post:', err);
     }
 });
+
+
+function fetchTimeline() {
+    fetch("https://wokki20.nl/lilroby/api/v1/timeline", {
+        headers: {
+            "Authorization": `Bearer ${accessToken}`
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const timelineContainer = document.getElementById("prints-timeline-items");
+            let postsHtml = "";
+            data.posts.forEach(post => {
+                let postHtml = `
+                    <div class="timelinePrintjobWrapper" id="${post.id}">
+                        <div class="timelinePrintjobContent">
+                            <img
+                            class="timelinePrintjobImg"
+                            src="https://wokki20.nl/lilroby/api/v1/posts/${post.unique_image_id}.webp"
+                            />
+                            <div class="timelinePrintjobTitle">${post.title}</div>
+                            <div class="timelinePrintjobText">${post.message || ""}</div>
+                            <div class="timelinePrintjobName">${post.name}</div>
+                            <div class="timelinePrintjobNr">Print #${post.id}</div>
+                        </div>
+                        <div class="timelinePrintjobFooterWrapper">
+                            <div class="timelinePrintjobFooterLeft">#${post.id}</div>
+                            <div class="timelinePrintjobFooterRight">
+                            <div class="timelinePrintjobFooterUpvotesCount">0</div>
+                            <button class="timelinePrintjobFooterUpvoteBtn">
+                                <img
+                                src="assets/branding/upvote-false.png"
+                                class="timelinePrintjobFooterUpvoteBtnIcon"
+                                />
+                            </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                postsHtml += postHtml;
+            });
+            timelineContainer.innerHTML = postsHtml;
+        }
+    })
+    .catch(error => {
+        console.error("Request failed", error);
+    });
+}
