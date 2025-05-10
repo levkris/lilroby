@@ -129,7 +129,7 @@ function getProfile() {
                 `;
 
                 document.body.insertAdjacentHTML("beforeend", profilePopup);
-            })
+            });
 
         } else {
             console.error("Error:", data.error);
