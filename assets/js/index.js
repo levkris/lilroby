@@ -305,11 +305,14 @@ function fetchTimeline(offset = 0) {
                     btn.addEventListener("click", async () => {
                         const printId = btn.parentElement.parentElement.parentElement.id;
                         const accessToken = localStorage.getItem("access_token");
-                        const response = await fetch(`https://wokki20.nl/lilroby/api/v1/prints/${printId}/upvote`, {
+                        const formData = new FormData();
+                        formData.append('post_id', printId);
+                        const response = await fetch(`https://wokki20.nl/lilroby/api/v1/upvote`, {
                             method: "POST",
                             headers: {
                                 "Authorization": `Bearer ${accessToken}`
-                            }
+                            },
+                            body: formData
                         });
                         const result = await response.json();
                         if (result.success) {
