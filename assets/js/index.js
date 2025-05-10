@@ -225,6 +225,7 @@ form.addEventListener('submit', async (e) => {
         submittingForm = false;
         if (result.error) {
             printInfoMsg.innerHTML = result.error;
+            printDisplayCard.classList.add("rotate");
             return;
         } else if (result.success) {
             printInfoMsg.classList.remove("active");
