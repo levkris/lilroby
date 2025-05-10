@@ -399,21 +399,11 @@ function fetchTimeline(offset = 0) {
         if (data.success) {
             introSectionPrintsCounter.innerHTML = data.total_posts;
 
-            if (data.posts.length <= data.total_posts) {
-                document.getElementById("newest-prints").remove();
-            } else {
-                document.getElementById("newest-prints").style.display = "block";
-                document.getElementById("newest-prints").addEventListener("click", () => {
-                    fetchTimeline(offset + 25);
-                })
-            }
-
             const timelineContainer = document.getElementById("prints-timeline-items");
             let postsHtml = "";
             data.posts.forEach(post => {
                 let postHtml = "";
                 if (post.status === "under_review") {
-                
                     postHtml = `
                     <div class="timelinePrintjobWrapper lil" id="${post.id}" style="color: #000;">
                         <div class="timelineUncheckedPrintjob"><div class="timelineUncheckedPrintjobTitle">#${post.id}</div><div class="timelineUncheckedPrintjobText">Under review</div><i class="material-symbols-rounded">policy</i></div>
@@ -458,6 +448,17 @@ function fetchTimeline(offset = 0) {
             });
             timelineContainer.innerHTML += postsHtml;
 
+            // Show or hide the "View More" button
+            const viewMoreBtn = document.getElementById("newest-prints");
+            if (data.posts.length < data.total_posts) {
+                viewMoreBtn.style.display = "block";
+                viewMoreBtn.addEventListener("click", () => {
+                    fetchTimeline(offset + 25);
+                    viewMoreBtn.style.display = "none"; // Hide the button after clicking
+                });
+            } else {
+                viewMoreBtn.style.display = "none"; // Hide if no more posts
+            }
 
             if (loggedIn) {
                 document.querySelectorAll(".timelinePrintjobFooterUpvoteBtn").forEach(btn => {
