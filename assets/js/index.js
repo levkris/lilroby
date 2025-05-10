@@ -26,15 +26,44 @@ function refreshTokenValid() {
 
 function doCorrespondingAction() {
     if (accessTokenValid() && refreshTokenValid()) {
-        console.log("Access token and refresh token are valid");
         loggedIn = true;
+        getProfile();
     } else if (!accessTokenValid() && refreshTokenValid() && access_token !== null && refresh_token !== null) {
         console.log("Access token is not valid, but refresh token is");
 
     } else {
-        console.log("Access token and refresh token are not valid");
         loggedIn = false;
     }
 }
 
 doCorrespondingAction();
+
+
+function getProfile() {
+    fetch("https://wokki20.nl/lilroby/api/v1/profile", { // url parameter is only needed when you want to specify a user
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("access_token"),
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok, status: ' + response.status);
+        }
+        return response.json();  // Parse JSON if the response is OK
+    })
+    .then(data => {
+        if (data.status === "success") {
+            const headerAccountBtn = document.querySelector(".header-account-btn");
+            headerAccountBtn.outerHTML = `
+                <button class="headerAccountBtn"><div id="header-btn-lilcoins-count" class="headerBtnLilcoinsCount">${data.lilcoins}</div><img src="assets/branding/lilcoin-wbr.png" style="width: 25px; height: 25px;"></button>
+            `;
+        } else {
+            console.error("Error:", data.error);
+        }
+    })
+    .catch(error => {
+        console.error("Request failed", error);
+    });
+                                        
+}
