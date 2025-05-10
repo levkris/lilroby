@@ -48,6 +48,7 @@ printsCountRankingTab.addEventListener("click", () => {
     printsCountRankingContent.classList.add("active");
     lilcoinsCountRankingContent.classList.remove("active");
     upvotesRankingContent.classList.remove("active");
+    getRankings('prints_count')
 })
 
 lilcoinsCountRankingTab.addEventListener("click", () => {
@@ -57,6 +58,7 @@ lilcoinsCountRankingTab.addEventListener("click", () => {
     printsCountRankingContent.classList.remove("active");
     lilcoinsCountRankingContent.classList.add("active");
     upvotesRankingContent.classList.remove("active");
+    getRankings('lilcoins')
 })
 
 upvotesRankingTab.addEventListener("click", () => {
@@ -66,6 +68,7 @@ upvotesRankingTab.addEventListener("click", () => {
     printsCountRankingContent.classList.remove("active");
     lilcoinsCountRankingContent.classList.remove("active");
     upvotesRankingContent.classList.add("active");
+    getRankings('upvotes')
 })
 
 
