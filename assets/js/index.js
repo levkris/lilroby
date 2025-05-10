@@ -284,10 +284,10 @@ function fetchTimeline(offset = 0) {
                         <div class="timelinePrintjobFooterWrapper">
                             <div class="timelinePrintjobFooterLeft">#${post.id}</div>
                             <div class="timelinePrintjobFooterRight">
-                            <div class="timelinePrintjobFooterUpvotesCount">0</div>
+                            <div class="timelinePrintjobFooterUpvotesCount">${post.upvotes}</div>
                             <button class="timelinePrintjobFooterUpvoteBtn">
                                 <img
-                                src="assets/branding/upvote-false.png"
+                                src="assets/branding/upvote-${post.upvoted ? "true" : "false"}.png"
                                 class="timelinePrintjobFooterUpvoteBtnIcon"
                                 />
                             </button>
