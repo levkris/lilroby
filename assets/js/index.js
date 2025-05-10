@@ -103,7 +103,7 @@ function getProfile() {
                         <div class="modalAccountInfo lilCoins">
                             <div class="lilCoinsUserBalanceTxt">balance:</div>
                             <div class="lilCoinsUserBalanceTxt" id="modal-account-info-lilcoins">${data.profile.lilcoins}</div>
-                            <img src="img/branding/lilcoin-bb.png" style="width: 25px; height: 25px" alt="lil coin icon">
+                            <img src="assets/branding/lilcoin-bb.png" style="width: 25px; height: 25px" alt="lil coin icon">
                         </div>
                         <div class="modalAccountInfo" id="modal-account-info-creation-date">here since: ${data.profile.created_at}</div>
 
@@ -117,16 +117,9 @@ function getProfile() {
                         <div class="modalAccountInfo" id="modal-account-info-upvotes">upvotes: 0</div>
                         <div class="modalAccountInfoEditWrapper">
                             <div class="modalAccountInfo" id="modal-account-info-email">${data.profile.email}</div>
-                            <div class="emailUnverifiedWrapper hidden">
-                            <button class="modalAccountInfoEditBtn" id="edit-email-btn">
-                                <i class="material-symbols-rounded">edit</i>
-                            </button>
-                            <button class="modalAccountInfoVerifyBtn" id="verify-email-btn">
-                                verify
-                            </button>
-                            </div>
+                            
                             <div class="emailVerifiedWrapper">
-                            <i class="material-symbols-rounded">task_alt</i>
+                            <i class="material-symbols-rounded">verified</i>
                             </div>
                         </div>
                         </div>
