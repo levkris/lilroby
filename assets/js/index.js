@@ -87,6 +87,7 @@ function getRankings(type = 'prints_count') {
     })
     .then(data => {
         if (type === 'prints_count') {
+            printsCountRankingContent.innerHTML = "";
             data.forEach(item => {
                 printsCountRankingContent.innerHTML += `
                     <div class="topTenRankingItem">
@@ -97,6 +98,7 @@ function getRankings(type = 'prints_count') {
                 `;
             })
         } else if (type === 'lilcoins') {
+            lilcoinsCountRankingContent.innerHTML = "";
             data.forEach(item => {
                 lilcoinsCountRankingContent.innerHTML += `
                     <div class="lilcoinsRankingItem">
@@ -107,6 +109,7 @@ function getRankings(type = 'prints_count') {
                 `;
             })
         } else if (type === 'upvotes') {
+            upvotesRankingContent.innerHTML = "";
             data.forEach(item => {
                 upvotesRankingContent.innerHTML += `
                     <div class="topTenRankingItem">
