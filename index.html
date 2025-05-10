@@ -96,7 +96,9 @@
                 Result: try again
               </div>
             </div>
-            <form class="printCreationForm" action="submit" id="new-print-form">
+
+
+            <form class="printCreationForm" id="new-print-form">
               <input type="text" name="title" placeholder="Print title" id="print-title-input" maxlength="24" required="">
               <div class="printFormTextareaWrapper" id="print-txt-input-wrapper">
                 <div class="textareaPricetagWrapper">
@@ -105,7 +107,7 @@
                   </div>
                   <img src="assets/branding/lilcoin-wbr.png" style="width: 20px; height: 20px" alt="lil coin icon">
                 </div>
-                <textarea placeholder="Text you want to print..." name="printText" class="printTextInput" id="print-txt-input" cols="20" rows="3" maxlength="200" resize="none"></textarea>
+                <textarea placeholder="Text you want to print..." name="printText" class="printTextInput" id="print-txt-input" cols="20" rows="3" maxlength="256" resize="none"></textarea>
               </div>
               <button type="button" class="printAddTxtWrapper" id="print-add-txt-btn">
                 add text
@@ -117,6 +119,9 @@
                 Print now
               </button>
             </form>
+
+
+
             <button type="button" class="reactivateFormBtn" id="btn-reactivate-submit-form">
               Print again
             </button>
@@ -124,11 +129,6 @@
           <div class="printSubmitSuccessMessageWrapper" id="printjob-submit-success-msg">
             <div class="printSubmitSuccessTitle">
               Printjob submitted successfully!
-            </div>
-            <div class="printSubmitSuccessText">
-              Print again, or check out your print in the
-              <a href="https://discord.gg/fUr9ATf5nb" target="_blank">discord</a>
-              server.
             </div>
           </div>
 

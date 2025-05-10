@@ -1,3 +1,5 @@
+
+
 const hamburgerMenu = document.querySelector(".hamburgerMenu");
 const sidebarMenuWrapper = document.querySelector(".sidebarMenuWrapper");
 hamburgerMenu.addEventListener("click", () => {
@@ -62,40 +64,7 @@ const printInteractionBtnImg = document.getElementById(
 printInteractionCustomImgBtn.addEventListener("click", () => {
   hiddenPrintImgInput.click();
 });
-let selectedCustomImg = false;
-hiddenPrintImgInput.addEventListener("change", (event) => {
-  if (event.target.files && event.target.files[0]) {
-    selectedCustomImg = event.target.files[0];
-    const reader = new FileReader();
-    reader.onload = function (e) {
-      printInteractionCustomImgBtnTxt.classList.remove("active");
-      printInteractionBtnImg.classList.add("active");
-      printInteractionBtnImg.src = e.target.result;
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  }
-});
 
-let printWithTxt = false;
-const printTxtInput = document.getElementById("print-txt-input");
-const printTxtInputWrapper = document.getElementById("print-txt-input-wrapper");
-const printElementPricetag = document.getElementById("print-element-pricetag");
-const printAddTxtFieldBtn = document.getElementById("print-add-txt-btn");
-printAddTxtFieldBtn.addEventListener("click", () => {
-  if (printWithTxt) {
-    printAddTxtFieldBtn.innerText = "add text";
-    printWithTxt = false;
-    printTxtInputWrapper.classList.remove("active");
-    printElementPricetag.innerText = PRINT_BASE_PRICE;
-  } else {
-    printAddTxtFieldBtn.innerText = "remove text";
-    printWithTxt = true;
-    printTxtInputWrapper.classList.add("active");
-    printElementPricetag.innerText = PRINT_WTXT_PRICE;
-  }
-});
-
-let submittingForm = false;
 
 function logout() {
     localStorage.clear();

@@ -2,6 +2,8 @@ const access_token = localStorage.getItem("access_token");
 const refresh_token = localStorage.getItem("refresh_token");
 const access_token_expires_at = localStorage.getItem("access_token_expires_at");
 const refresh_token_expires_at = localStorage.getItem("refresh_token_expires_at");
+const PRINT_WTXT_PRICE = 15;
+const PRINT_BASE_PRICE = 10;
 
 let loggedIn = false;
 
@@ -139,3 +141,74 @@ function getProfile() {
     });
                                         
 }
+
+
+let selectedCustomImg = null;
+hiddenPrintImgInput.addEventListener("change", (event) => {
+  if (event.target.files && event.target.files[0]) {
+    selectedCustomImg = event.target.files[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      printInteractionCustomImgBtnTxt.classList.remove("active");
+      printInteractionBtnImg.classList.add("active");
+      printInteractionBtnImg.src = e.target.result;
+    };
+    reader.readAsDataURL(event.target.files[0]);
+  }
+});
+
+let printWithTxt = false;
+const printTxtInput = document.getElementById("print-txt-input");
+const printTxtInputWrapper = document.getElementById("print-txt-input-wrapper");
+const printElementPricetag = document.getElementById("print-element-pricetag");
+const printAddTxtFieldBtn = document.getElementById("print-add-txt-btn");
+printAddTxtFieldBtn.addEventListener("click", () => {
+  if (printWithTxt) {
+    printAddTxtFieldBtn.innerText = "add text";
+    printWithTxt = false;
+    printTxtInputWrapper.classList.remove("active");
+    printElementPricetag.innerText = PRINT_BASE_PRICE;
+  } else {
+    printAddTxtFieldBtn.innerText = "remove text";
+    printWithTxt = true;
+    printTxtInputWrapper.classList.add("active");
+    printElementPricetag.innerText = PRINT_WTXT_PRICE;
+  }
+});
+
+let submittingForm = false;
+
+const form = document.getElementById('new-print-form');
+
+form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    if (selectedCustomImg === null) {
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('title', document.querySelector('#print-title-input').value);
+    formData.append('message', document.querySelector('#print-txt-input').value);
+    formData.append('name', document.querySelector('#print-name-input').value);
+    formData.append('image', selectedCustomImg);
+
+
+
+    const accessToken = localStorage.getItem('access_token');
+
+    try {
+        const response = await fetch('https://wokki20.nl/lilroby/api/v1/print', {
+            method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+            body: formData,
+        });
+
+        const result = await response.json();
+        console.log(result);
+    } catch (err) {
+        console.error('Error submitting post:', err);
+    }
+});
