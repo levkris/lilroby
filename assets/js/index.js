@@ -245,9 +245,7 @@ form.addEventListener('submit', async (e) => {
 
 function fetchTimeline() {
     fetch("https://wokki20.nl/lilroby/api/v1/timeline", {
-        headers: {
-            "Authorization": `Bearer ${access_token}`
-        }
+        method: "GET"
     })
     .then(response => response.json())
     .then(data => {
