@@ -9,6 +9,120 @@ const printInfoMsg = document.getElementById("print-info-msg");
 const printSuccessMsg = document.getElementById("print-success-msg");
 const printSuccessMsgTitle = document.getElementById("print-success-msg-title");
 const introSectionPrintsCounter = document.getElementById("intro-section-prints-counter");
+const timelineTab = document.getElementById("prints-timeline-tab");
+const rankingTab = document.getElementById("ranking-tab");
+const lilcoinsTab = document.getElementById("lilcoins-tab");
+const printsTimelineWrapper = document.getElementById("prints-timeline-wrapper");
+const rankingWrapper = document.getElementById("ranking-wrapper");
+const printsCountRankingTab = document.getElementById("prints-count-ranking-tab");
+const lilcoinsCountRankingTab = document.getElementById("lilcoins-count-ranking-tab");
+const upvotesRankingTab = document.getElementById("upvotes-ranking-tab");
+const printsCountRankingContent = document.getElementById("prints-count-ranking-content");
+const lilcoinsCountRankingContent = document.getElementById("lilcoins-count-ranking-content");
+const upvotesRankingContent = document.getElementById("upvotes-ranking-content");
+
+
+timelineTab.addEventListener("click", () => {
+    timelineTab.classList.add("active");
+    rankingTab.classList.remove("active");
+    lilcoinsTab.classList.remove("active");
+    printsTimelineWrapper.classList.add("active");
+    rankingWrapper.classList.remove("active");
+})
+
+rankingTab.addEventListener("click", () => {
+    timelineTab.classList.remove("active");
+    rankingTab.classList.add("active");
+    lilcoinsTab.classList.remove("active");
+    printsTimelineWrapper.classList.remove("active");
+    rankingWrapper.classList.add("active");
+})
+
+
+
+
+printsCountRankingTab.addEventListener("click", () => {
+    printsCountRankingTab.classList.add("active");
+    lilcoinsCountRankingTab.classList.remove("active");
+    upvotesRankingTab.classList.remove("active");
+    printsCountRankingContent.classList.add("active");
+    lilcoinsCountRankingContent.classList.remove("active");
+    upvotesRankingContent.classList.remove("active");
+})
+
+lilcoinsCountRankingTab.addEventListener("click", () => {
+    printsCountRankingTab.classList.remove("active");
+    lilcoinsCountRankingTab.classList.add("active");
+    upvotesRankingTab.classList.remove("active");
+    printsCountRankingContent.classList.remove("active");
+    lilcoinsCountRankingContent.classList.add("active");
+    upvotesRankingContent.classList.remove("active");
+})
+
+upvotesRankingTab.addEventListener("click", () => {
+    printsCountRankingTab.classList.remove("active");
+    lilcoinsCountRankingTab.classList.remove("active");
+    upvotesRankingTab.classList.add("active");
+    printsCountRankingContent.classList.remove("active");
+    lilcoinsCountRankingContent.classList.remove("active");
+    upvotesRankingContent.classList.add("active");
+})
+
+
+function getRankings(type = 'prints_count') {
+    fetch("https://wokki20.nl/lilroby/api/v1/rankings?type=" + type + "", { // url parameter is only needed when you want to specify a user
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("access_token"),
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok, status: ' + response.status);
+        }
+        return response.json();  // Parse JSON if the response is OK
+    })
+    .then(data => {
+        if (type === 'prints_count') {
+            data.forEach(item => {
+                printsCountRankingContent.innerHTML += `
+                    <div class="topTenRankingItem">
+                        <div class="newRankingItemNr">${item.rank}.</div>
+                        <div class="newRankingItemUsername">${item.username}</div>
+                        <div class="newRankingItemlilCoins">${item.prints_count} prints</div>
+                    </div>
+                `;
+            })
+        } else if (type === 'lilcoins') {
+            data.forEach(item => {
+                lilcoinsCountRankingContent.innerHTML += `
+                    <div class="lilcoinsRankingItem">
+                        <div class="newRankingItemNr">${item.rank}.</div>
+                        <div class="newRankingItemUsername">${item.username}</div>
+                        <div class="newRankingItemlilCoins">${item.lilcoins} lilCoins</div>
+                    </div>
+                `;
+            })
+        } else if (type === 'upvotes') {
+            data.forEach(item => {
+                upvotesRankingContent.innerHTML += `
+                    <div class="topTenRankingItem">
+                        <div class="newRankingItemNr">${item.rank}.</div>
+                        <div class="newRankingItemUsername">${item.username}</div>
+                        <div class="newRankingItemlilCoins">${item.upvotes} upvotes</div>
+                    </div>
+                `;
+            })
+
+        }
+    })
+    .catch(error => {
+        console.error("Request failed", error);
+    });
+}
+
+
+
 let lilcoins = 0;
 
 let loggedIn = false;
