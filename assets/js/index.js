@@ -4,6 +4,11 @@ const access_token_expires_at = localStorage.getItem("access_token_expires_at");
 const refresh_token_expires_at = localStorage.getItem("refresh_token_expires_at");
 const PRINT_WTXT_PRICE = 15;
 const PRINT_BASE_PRICE = 10;
+const printDisplayCard = document.getElementById("print-display-card");
+const printInfoMsg = document.getElementById("print-info-msg");
+const printSuccessMsg = document.getElementById("print-success-msg");
+const printSuccessMsgTitle = document.getElementById("print-success-msg-title");
+let lilcoins = 0;
 
 let loggedIn = false;
 
@@ -66,6 +71,8 @@ function getProfile() {
 
             // Get the new button since the old one was replaced
             headerAccountBtn = document.getElementById("header-account-btn");
+
+            lilcoins = data.profile.lilcoins;
 
             headerAccountBtn.addEventListener("click", () => {
                 let profilePopup = `
@@ -158,6 +165,7 @@ hiddenPrintImgInput.addEventListener("change", (event) => {
 });
 
 let printWithTxt = false;
+let price = PRINT_BASE_PRICE;
 const printTxtInput = document.getElementById("print-txt-input");
 const printTxtInputWrapper = document.getElementById("print-txt-input-wrapper");
 const printElementPricetag = document.getElementById("print-element-pricetag");
@@ -168,11 +176,13 @@ printAddTxtFieldBtn.addEventListener("click", () => {
     printWithTxt = false;
     printTxtInputWrapper.classList.remove("active");
     printElementPricetag.innerText = PRINT_BASE_PRICE;
+    price = PRINT_BASE_PRICE;
   } else {
     printAddTxtFieldBtn.innerText = "remove text";
     printWithTxt = true;
     printTxtInputWrapper.classList.add("active");
     printElementPricetag.innerText = PRINT_WTXT_PRICE;
+    price = PRINT_WTXT_PRICE;
   }
 });
 
@@ -193,7 +203,7 @@ form.addEventListener('submit', async (e) => {
     formData.append('name', document.querySelector('#print-name-input').value);
     formData.append('image', selectedCustomImg);
 
-
+    submittingForm = true;
 
     const accessToken = localStorage.getItem('access_token');
 
@@ -208,6 +218,22 @@ form.addEventListener('submit', async (e) => {
 
         const result = await response.json();
         console.log(result);
+        submittingForm = false;
+        if (result.error) {
+            printInfoMsg.innerHTML = result.error;
+            return;
+        } else if (result.success) {
+            printInfoMsg.classList.remove("active");
+            printSuccessMsg.classList.add("active");
+            printSuccessMsgTitle.innerHTML = "Print #" + result.print_id + " submitted successfully!";
+            printDisplayCard.classList.add("rotate");
+            let newLilcoins = parseInt(lilcoins) - parseInt(price);
+            lilcoins = newLilcoins;
+            document.getElementById("header-btn-lilcoins-count").textContent = lilcoins;
+            
+        }
+        
+
     } catch (err) {
         console.error('Error submitting post:', err);
     }
