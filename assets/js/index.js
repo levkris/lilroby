@@ -54,10 +54,16 @@ function getProfile() {
     })
     .then(data => {
         if (data.status === "success") {
-            const headerAccountBtn = document.getElementById("header-account-btn");
+            let headerAccountBtn = document.getElementById("header-account-btn");
             headerAccountBtn.outerHTML = `
-                <button class="headerAccountBtn" id="header-account-btn"><div id="header-btn-lilcoins-count" class="headerBtnLilcoinsCount">${data.profile.lilcoins}</div><img src="assets/branding/lilcoin-wbr.png" style="width: 25px; height: 25px;"></button>
+                <button class="headerAccountBtn" id="header-account-btn">
+                    <div id="header-btn-lilcoins-count" class="headerBtnLilcoinsCount">${data.profile.lilcoins}</div>
+                    <img src="assets/branding/lilcoin-wbr.png" style="width: 25px; height: 25px;">
+                </button>
             `;
+
+            // Get the new button since the old one was replaced
+            headerAccountBtn = document.getElementById("header-account-btn");
 
             headerAccountBtn.addEventListener("click", () => {
                 let profilePopup = `
@@ -75,7 +81,7 @@ function getProfile() {
                         <div class="modalAccountInfoWrapper">
                         <div class="modalAccountUsernameEditInputErrorMsg" id="modal-account-username-edit-input-error-msg"></div>
                         <div class="modalAccountUsernameWrapper">
-                            <div class="modalAccountInfo username active" id="modal-account-info-name">wokki20</div>
+                            <div class="modalAccountInfo username active" id="modal-account-info-name">${data.profile.username}</div>
 
                             <div class="modalAccountUsernameEditInput" id="modal-account-username-edit-input-wrapper">
                             <div class="usernameInputWrapper">
@@ -96,21 +102,21 @@ function getProfile() {
                         </div>
                         <div class="modalAccountInfo lilCoins">
                             <div class="lilCoinsUserBalanceTxt">balance:</div>
-                            <div class="lilCoinsUserBalanceTxt" id="modal-account-info-lilcoins">11639</div>
+                            <div class="lilCoinsUserBalanceTxt" id="modal-account-info-lilcoins">${data.profile.lilcoins}</div>
                             <img src="img/branding/lilcoin-bb.png" style="width: 25px; height: 25px" alt="lil coin icon">
                         </div>
-                        <div class="modalAccountInfo" id="modal-account-info-creation-date">here since: 02/01/24</div>
+                        <div class="modalAccountInfo" id="modal-account-info-creation-date">here since: ${data.profile.created_at}</div>
 
                         <div class="userPrintsWrapper">
                             <div class="userExtraDataIntro">
-                            <div class="userModalTitle" id="modal-account-info-prints-count">prints: 172</div>
+                            <div class="userModalTitle" id="modal-account-info-prints-count">prints: 0</div>
                             <button class="modalExtraDataExpandBtn" id="modal-account-info-prints-btn"><i class="material-symbols-rounded">expand_more</i></button>
                             </div>
                             <div class="userPrintItems hidden" id="modal-account-info-prints"></div>
                         </div>
-                        <div class="modalAccountInfo" id="modal-account-info-upvotes">upvotes: 113</div>
+                        <div class="modalAccountInfo" id="modal-account-info-upvotes">upvotes: 0</div>
                         <div class="modalAccountInfoEditWrapper">
-                            <div class="modalAccountInfo" id="modal-account-info-email">l.vwijk100@outlook.com</div>
+                            <div class="modalAccountInfo" id="modal-account-info-email">${data.profile.email}</div>
                             <div class="emailUnverifiedWrapper hidden">
                             <button class="modalAccountInfoEditBtn" id="edit-email-btn">
                                 <i class="material-symbols-rounded">edit</i>
