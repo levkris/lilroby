@@ -19,7 +19,11 @@ loginForm.addEventListener('submit', (e) => {
     .then(response => response.json())
     .then(data => {
         if (data.success == true) {
-            console.log(data);
+            localStorage.setItem("access_token", data.access_token);
+            localStorage.setItem("refresh_token", data.refresh_token);
+            localStorage.setItem("access_token_expires_at", data.access_token_expires);
+            localStorage.setItem("refresh_token_expires_at", data.refresh_token_expires);
+            window.location.href = "/";
         } else {
             errorTxt.innerText = data.error;
         }
