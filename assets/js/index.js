@@ -422,6 +422,15 @@ function fetchTimeline(offset = 0) {
                         </div>
                     </div>
                 `;
+                } else if (post.status === "denied") {
+                    postHtml = `
+                    <div class="timelinePrintjobWrapper" id="${post.id}" style="color: #000;">
+                        <div class="timelinePrintjobContent">
+                            <div class="timelinePrintjobTitle">Denied</div>
+                            <div class="timelinePrintjobNr">Print #${post.id}</div>
+                        </div>
+                    </div>
+                    `; 
                 } else {
                     postHtml = `
                     <div class="timelinePrintjobWrapper" id="${post.id}" style="color: #000;">
