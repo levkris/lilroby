@@ -415,13 +415,15 @@ function fetchTimeline(offset = 0) {
                 if (post.status === "under_review") {
                 
                     postHtml = `
-                    <div class="timelineUncheckedPrintjob"><div class="timelineUncheckedPrintjobTitle">#${post.id}</div><div class="timelineUncheckedPrintjobText">Under review</div><i class="material-symbols-rounded">policy</i></div>
-
+                    <div class="timelinePrintjobWrapper lil" id="${post.id}" style="color: #000;">
+                        <div class="timelineUncheckedPrintjob"><div class="timelineUncheckedPrintjobTitle">#${post.id}</div><div class="timelineUncheckedPrintjobText">Under review</div><i class="material-symbols-rounded">policy</i></div>
+                    </div>
                 `;
                 } else if (post.status === "denied") {
                     postHtml = `
-                    <div class="timelineUncheckedPrintjob"><div class="timelineUncheckedPrintjobTitle">#${post.id}</div><div class="timelineUncheckedPrintjobText">denied!</div><i class="material-symbols-rounded">block</i></div>
-                    
+                    <div class="timelinePrintjobWrapper lil" id="${post.id}" style="color: #000;">
+                        <div class="timelineUncheckedPrintjob"><div class="timelineUncheckedPrintjobTitle">#${post.id}</div><div class="timelineUncheckedPrintjobText">denied!</div><i class="material-symbols-rounded">block</i></div>
+                    </div>
                     `; 
                 } else {
                     postHtml = `
