@@ -36,7 +36,6 @@ sideMenuLilcoinsBtn.addEventListener("click", () => {
 
 const printInfoTrigger = document.getElementById("print-info-trigger");
 const printInfoBackBtn = document.getElementById("print-info-back-btn");
-const printDisplayCard = document.getElementById("print-display-card");
 
 const printInfoTxt = document.getElementById("print-info-msg");
 const printSuccessTxt = document.getElementById("print-success-msg");
