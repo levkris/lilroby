@@ -411,7 +411,19 @@ function fetchTimeline(offset = 0) {
             const timelineContainer = document.getElementById("prints-timeline-items");
             let postsHtml = "";
             data.posts.forEach(post => {
-                let postHtml = `
+                let postHtml = "";
+                if (data.status === "under_review") {
+                
+                    postHtml = `
+                    <div class="timelinePrintjobWrapper" id="${post.id}" style="color: #000;">
+                        <div class="timelinePrintjobContent">
+                            <div class="timelinePrintjobTitle">Under review</div>
+                            <div class="timelinePrintjobNr">Print #${post.id}</div>
+                        </div>
+                    </div>
+                `;
+                } else {
+                    postHtml = `
                     <div class="timelinePrintjobWrapper" id="${post.id}" style="color: #000;">
                         <div class="timelinePrintjobContent">
                             <img
@@ -437,6 +449,8 @@ function fetchTimeline(offset = 0) {
                         </div>
                     </div>
                 `;
+                }
+                
                 postsHtml += postHtml;
             });
             timelineContainer.innerHTML += postsHtml;
