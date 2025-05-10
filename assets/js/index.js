@@ -39,6 +39,7 @@ function doCorrespondingAction() {
         fetchTimeline();
     } else if (!accessTokenValid() && refreshTokenValid() && access_token !== null && refresh_token !== null) {
         console.log("Access token is not valid, but refresh token is");
+        loggedIn = false;
         fetchTimeline();
 
     } else {
@@ -246,8 +247,15 @@ form.addEventListener('submit', async (e) => {
 
 
 function fetchTimeline(offset = 0) {
+    let header = "";
+    if (loggedIn) {
+        header = "Authorization: Bearer " + access_token;
+    }
     fetch("https://wokki20.nl/lilroby/api/v1/timeline?offset=" + offset, {
-        method: "GET"
+        method: "GET",
+        headers: {
+            header
+        }
     })
     .then(response => response.json())
     .then(data => {
