@@ -664,8 +664,8 @@ function fetchLilcoinsPage() {
             // Sort tasks
             const taskslist = tasksHtml.split("<div class=\"lilCoinsOfferWraper\"");
             const sortedTasks = Array.from(taskslist).sort((a, b) => {
-                const aIsClaimed = a.dataset.claimed === "true";
-                const bIsClaimed = b.dataset.claimed === "true";
+                const aIsClaimed = a.includes('data-claimed="true"');
+                const bIsClaimed = b.includes('data-claimed="true"');
 
                 // Claimed at the bottom
                 if (aIsClaimed !== bIsClaimed) {
@@ -673,14 +673,9 @@ function fetchLilcoinsPage() {
                 }
 
                 // Time always on top
-                const aHasTime = a.querySelector(".oneHoursRewardTimer") !== null;
-                const bHasTime = b.querySelector(".oneHoursRewardTimer") !== null;
-                if (aHasTime !== bHasTime) {
-                    return aHasTime ? -1 : 1;
-                }
-
-                // Sort by price
-                return parseInt(a.querySelector(".lilCoinsOfferText").textContent) - parseInt(b.querySelector(".lilCoinsOfferText").textContent);
+                const aHasTime = a.includes('data-type="hour"');
+                const bHasTime = b.includes('data-type="hour"');
+                return aHasTime ? -1 : (bHasTime ? 1 : 0);
             });
 
             // Update the html
