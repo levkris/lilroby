@@ -538,6 +538,8 @@ function fetchLilcoinsPage() {
             let tasksHtml = "";
 
             let claimableHoursList = [];
+            let claimablePrintsList = [];
+            let claimedPrintsList = [];
 
             claimableHours.forEach(hour => {
                 let hourList = {
@@ -545,6 +547,24 @@ function fetchLilcoinsPage() {
                     time_left: hour.time_left
                 };
                 claimableHoursList.push(hourList);
+            })
+
+            data.claimable_prints.forEach(print => {
+                let printList = {
+                    alias: print.alias,
+                    needed: print.needed,
+                    has: print.has
+                };
+                claimablePrintsList.push(printList);
+            })
+
+            data.claimed_prints.forEach(print => {
+                let printList = {
+                    alias: print.alias,
+                    needed: print.needed,
+                    has: print.has
+                };
+                claimedPrintsList.push(printList);
             })
 
 
@@ -601,6 +621,43 @@ function fetchLilcoinsPage() {
                             }, 1000);
                         }, 0);
                     });
+                } else if (taskGroupName === "prints") {
+                    taskGroup.forEach(task => {
+                        let needed = task.needed;
+                        let has = task.has;
+
+                        // Override with current time from claimable list if exists
+                        const matched = claimablePrintsList.find(print => print.alias === task.alias);
+                        if (matched) {
+                            needed = matched.needed;
+                            has = matched.has;
+                        }
+
+                        const claimed = claimedPrintsList.find(print => print.alias === task.alias);
+                        if (claimed) {
+                            has = claimed.has;
+                        }
+
+                        // Unique alias used as data attribute to select specific elements
+                        tasksHtml += `
+                            <div class="lilCoinsOfferWraper" data-alias="${task.alias}">
+                                <div class="lilCoinsOfferMain">
+                                    <div class="lilCoinsOfferTitle">${task.name}:</div>
+                                    <div class="lilCoinsOfferContent">
+                                        <div class="lilCoinsOfferText">${task.price}</div>
+                                        <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
+                                    </div>
+                                    <div class="lilCoinsOfferTextWrapper lilcoinsSocialWrapper" id="lilcoins-offer-200-prints-txt">${has}/${needed} prints</div>
+                                    <button class="lilCoinsOfferBtn ${has >= needed ? "" : "inactive"}"
+                                            data-alias="${task.alias}"
+                                            onclick="claimReward('${task.alias}')">
+                                        ${claimed ? "<i class='material-symbols-rounded'>check</i>" : has >= needed ? "claim" : "later"}
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        
+                    });                    
                 }
             });
 
