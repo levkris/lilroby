@@ -542,6 +542,8 @@ function fetchLilcoinsPage() {
             let claimedPrintsList = [];
             let claimeableUpvotesList = [];
             let claimedUpvotesList = [];
+            let claimableSocailList = [];
+            let claimedSocialList = [];
 
             claimableHours.forEach(hour => {
                 let hourList = {
@@ -585,6 +587,22 @@ function fetchLilcoinsPage() {
                     has: upvote.has
                 };
                 claimedUpvotesList.push(upvoteList);
+            })
+
+            data.claimable_social.forEach(social => {
+                let socialList = {
+                    alias: social.alias,
+                    url: social.url,
+                };
+                claimableSocailList.push(socialList);
+            })
+
+            data.claimed_social.forEach(social => {
+                let socialList = {
+                    alias: social.alias,
+                    url: social.url,
+                };
+                claimedSocialList.push(socialList);
             })
 
             Object.entries(tasks).forEach(([taskGroupName, taskGroup]) => {
@@ -714,6 +732,30 @@ function fetchLilcoinsPage() {
                         `;
                         
                     });         
+                } else if (taskGroupName === "social") {
+                    taskGroup.forEach(task => {
+                        const claimed = claimedUpvotesList.find(upvote => upvote.alias === task.alias);
+
+                        // Unique alias used as data attribute to select specific elements
+                        tasksHtml += `
+                            <div class="lilCoinsOfferWraper" data-alias="${task.alias}" data-claimed="${claimed ? "true" : "false"}" data-type="upvote">
+                                <div class="lilCoinsOfferMain">
+                                    <div class="lilCoinsOfferTitle">${task.name}:</div>
+                                    <div class="lilCoinsOfferContent">
+                                        <div class="lilCoinsOfferText">${task.price}</div>
+                                        <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
+                                    </div>
+                                    <div class="lilCoinsOfferTextWrapper lilcoinsSocialWrapper">${claimed ? "claimed" : "follow"}</div>
+                                    <button class="lilCoinsOfferBtn ${!claimed ? "" : "inactive"}"
+                                            data-alias="${task.alias}"
+                                            onclick="window.open('${task.url}', '_blank'); claimReward('${task.alias}'); ">
+                                        ${claimed ? "<i class='material-symbols-rounded'>check</i>" : "Go"}
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        
+                    });      
                 }
             });
 
