@@ -675,6 +675,28 @@ function claimReward(alias) {
                     btn.classList.add("inactive");
                     btn.textContent = "wait";
                 });
+
+                let timeLeft = 3600;
+
+                setTimeout(() => {
+                    const timerInterval = setInterval(() => {
+                        if (timeLeft > 0) {
+                            timeLeft--;
+
+                            const timerEls = document.querySelectorAll(`.oneHoursRewardTimer[data-alias="${alias}"]`);
+                            timerEls.forEach(el => el.textContent = formatTime(timeLeft));
+
+                            // If time runs out, update button
+                            if (timeLeft === 0) {
+                                const btns = document.querySelectorAll(`.lilCoinsOfferBtn[data-alias="${alias}"]`);
+                                btns.forEach(btn => {
+                                    btn.classList.remove("inactive");
+                                    btn.textContent = "claim";
+                                });
+                            }
+                        }
+                    }, 1000);
+                }, 0);
                 
             }
 
