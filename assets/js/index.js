@@ -513,6 +513,7 @@ function fetchLilcoinsPage() {
         if (data.status === "success") {
 
             const tasks = data.tasks;
+            const claimableHours = data.claimable_hours;
 
             let tasksHtmlOuter = `
             
@@ -536,9 +537,24 @@ function fetchLilcoinsPage() {
 
             let tasksHtml = "";
 
+            let claimableHoursList = [];
+
+            claimableHours.forEach(hour => {
+                let hourList = {
+                    alias: hour.alias,
+                    time_left: hour.time_left
+                };
+                claimableHoursList.push(hourList);
+            })
+
+
             Object.entries(tasks).forEach(([taskGroupName, taskGroup]) => {
                 if (taskGroupName === "hours") {
                     taskGroup.forEach(task => {
+                        let timeLeft = task.time_left;
+                        if (claimableHoursList.find(hour => hour.alias === task.alias)) {
+                            timeLeft = claimableHoursList.find(hour => hour.alias === task.alias).time_left;
+                        }
                         tasksHtml += `
                             <div class="lilCoinsOfferWraper">
                                 <div class="lilCoinsOfferMain">
@@ -547,8 +563,8 @@ function fetchLilcoinsPage() {
                                         <div class="lilCoinsOfferText">${task.price}</div>
                                         <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
                                     </div>
-                                    <div class="lilCoinsOfferTextWrapper oneHoursRewardTimer" id="one-hour-reward-timer">${formatTime(task.time_left)}</div>
-                                    <button class="lilCoinsOfferBtn ${task.time_left === 0 ? "" : "inactive"}" id="one-hours-reward-btn">${task.time_left === 0 ? "claim" : "wait"}</button>
+                                    <div class="lilCoinsOfferTextWrapper oneHoursRewardTimer" id="one-hour-reward-timer">${formatTime(timeLeft)}</div>
+                                    <button class="lilCoinsOfferBtn ${timeLeft === 0 ? "" : "inactive"}" id="one-hours-reward-btn">${timeLeft === 0 ? "claim" : "wait"}</button>
                                 </div>
                             </div>
                         `;
@@ -579,7 +595,9 @@ function formatTime(time) {
     const hours = Math.floor(time / 3600);
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;
-    
+
+    if (time === 0) return 'claim now';
+
     let formattedTime = '';
     if (hours > 0) {
         formattedTime += `${hours}h `;
@@ -587,7 +605,9 @@ function formatTime(time) {
     if (minutes > 0) {
         formattedTime += `${minutes}min `;
     }
-    formattedTime += seconds > 0 ? `${seconds}sec` : 'claim now';
-    
+    if (seconds > 0) {
+        formattedTime += `${seconds}sec`;
+    }
+
     return formattedTime.trim();
 }
