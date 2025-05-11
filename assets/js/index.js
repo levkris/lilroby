@@ -820,7 +820,7 @@ function claimReward(alias) {
             const btns = document.querySelectorAll(`.lilCoinsOfferBtn[data-alias="${alias}"]`);
             btns.forEach(btn => {
                 btn.classList.add("inactive");
-                btn.textContent = "<i class='material-symbols-rounded'>check</i>";
+                btn.innerHTML = "<i class='material-symbols-rounded'>check</i>";
             });
             
             if (alias === "hour1" || alias === "hour12" || alias === "hour24") {
