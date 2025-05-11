@@ -651,8 +651,6 @@ function claimReward(alias) {
         method: "POST",
         headers: {
             "Authorization": "Bearer " + localStorage.getItem("access_token"),
-            // Note: Do NOT set Content-Type header when using FormData,
-            // the browser will set the correct multipart/form-data boundary.
         },
         body: formData
     })
@@ -679,6 +677,12 @@ function claimReward(alias) {
                 });
                 
             }
+
+            const earns = data.earns;
+            let newLilcoins = parseInt(lilcoins) + parseInt(earns);
+            lilcoins = newLilcoins;
+            document.getElementById("lil-coins-user-balance-display").textContent = lilcoins;
+            document.getElementById("header-btn-lilcoins-count").textContent = lilcoins;
         } else {
             console.error("Error:", data.error);
         }
