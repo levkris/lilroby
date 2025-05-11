@@ -734,11 +734,11 @@ function fetchLilcoinsPage() {
                     });         
                 } else if (taskGroupName === "social") {
                     taskGroup.forEach(task => {
-                        const claimed = claimedUpvotesList.find(upvote => upvote.alias === task.alias);
+                        const claimed = claimedSocialList.find(socail => socail.alias === task.alias);
 
                         // Unique alias used as data attribute to select specific elements
                         tasksHtml += `
-                            <div class="lilCoinsOfferWraper" data-alias="${task.alias}" data-claimed="${claimed ? "true" : "false"}" data-type="upvote">
+                            <div class="lilCoinsOfferWraper" data-alias="${task.alias}" data-claimed="${claimed ? "true" : "false"}" data-type="socail">
                                 <div class="lilCoinsOfferMain">
                                     <div class="lilCoinsOfferTitle">${task.name}:</div>
                                     <div class="lilCoinsOfferContent">
