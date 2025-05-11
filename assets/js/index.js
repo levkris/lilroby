@@ -564,10 +564,17 @@ function fetchLilcoinsPage() {
                                         <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
                                     </div>
                                     <div class="lilCoinsOfferTextWrapper oneHoursRewardTimer" id="one-hour-reward-timer">${formatTime(timeLeft)}</div>
-                                    <button class="lilCoinsOfferBtn ${timeLeft === 0 ? "" : "inactive"}" id="one-hours-reward-btn">${timeLeft === 0 ? "claim" : "wait"}</button>
+                                    <button class="lilCoinsOfferBtn ${timeLeft === 0 ? "" : "inactive"}" id="one-hours-reward-btn" onclick="claimReward('${task.alias}')">${timeLeft === 0 ? "claim" : "wait"}</button>
                                 </div>
                             </div>
                         `;
+
+                        setInterval(() => {
+                            if (timeLeft !== 0) {
+                                timeLeft -= 1;
+                                document.getElementById("one-hour-reward-timer").textContent = formatTime(timeLeft);
+                            }
+                        }, 1000);
                     });
                 }
 
@@ -596,7 +603,7 @@ function formatTime(time) {
     const minutes = Math.floor((time % 3600) / 60);
     const seconds = time % 60;
 
-    if (time === 0) return 'claim now';
+    if (time === 0 || time < 0) return 'claim now';
 
     let formattedTime = '';
     if (hours > 0) {
@@ -610,4 +617,37 @@ function formatTime(time) {
     }
 
     return formattedTime.trim();
+}
+
+function claimReward(alias) {
+    const formData = new FormData();
+    formData.append("task", alias);
+
+    fetch("https://wokki20.nl/lilroby/api/v1/lilcoin_tasks", {
+        method: "POST",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("access_token"),
+            // Note: Do NOT set Content-Type header when using FormData,
+            // the browser will set the correct multipart/form-data boundary.
+        },
+        body: formData
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok, status: ' + response.status);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.status === "success") {
+            console.log(data);
+            // do something with the data
+        } else {
+            console.error("Error:", data.error);
+        }
+    })
+    .catch(error => {
+        console.error("Request failed", error);
+    });
+
 }
