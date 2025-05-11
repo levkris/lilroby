@@ -665,7 +665,20 @@ function claimReward(alias) {
     .then(data => {
         if (data.status === "success") {
             console.log(data);
-            // do something with the data
+            
+            const btns = document.querySelectorAll(`.lilCoinsOfferBtn[data-alias="${alias}"]`);
+            btns.forEach(btn => {
+                btn.classList.add("inactive");
+                btn.textContent = "claimed";
+            });
+            
+            if (alias === "hour1" || alias === "hour12" || alias === "hour24") {
+                btns.forEach(btn => {
+                    btn.classList.add("inactive");
+                    btn.textContent = "wait";
+                });
+                
+            }
         } else {
             console.error("Error:", data.error);
         }
