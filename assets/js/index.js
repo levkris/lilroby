@@ -648,7 +648,7 @@ function fetchLilcoinsPage() {
                                         <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
                                     </div>
                                     <div class="lilCoinsOfferTextWrapper lilcoinsSocialWrapper" id="lilcoins-offer-200-prints-txt">${has}/${needed} prints</div>
-                                    <button class="lilCoinsOfferBtn ${has >= needed ? "" : "inactive"}"
+                                    <button class="lilCoinsOfferBtn ${has >= needed && !claimed ? "" : "inactive"}"
                                             data-alias="${task.alias}"
                                             onclick="claimReward('${task.alias}')">
                                         ${claimed ? "<i class='material-symbols-rounded'>check</i>" : has >= needed ? "claim" : "later"}
@@ -724,7 +724,7 @@ function claimReward(alias) {
             const btns = document.querySelectorAll(`.lilCoinsOfferBtn[data-alias="${alias}"]`);
             btns.forEach(btn => {
                 btn.classList.add("inactive");
-                btn.textContent = "claimed";
+                btn.textContent = "<i class='material-symbols-rounded'>check</i>";
             });
             
             if (alias === "hour1" || alias === "hour12" || alias === "hour24") {
