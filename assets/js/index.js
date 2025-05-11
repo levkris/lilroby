@@ -678,12 +678,13 @@ function claimReward(alias) {
 
                 let timeLeft = 3600;
 
+                const timerEls = document.querySelectorAll(`.oneHoursRewardTimer[data-alias="${alias}"]`);
+                timerEls.forEach(el => el.textContent = formatTime(timeLeft));
                 setTimeout(() => {
                     const timerInterval = setInterval(() => {
                         if (timeLeft > 0) {
                             timeLeft--;
 
-                            const timerEls = document.querySelectorAll(`.oneHoursRewardTimer[data-alias="${alias}"]`);
                             timerEls.forEach(el => el.textContent = formatTime(timeLeft));
 
                             // If time runs out, update button
