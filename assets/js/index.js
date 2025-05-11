@@ -255,7 +255,11 @@ function getProfile() {
                         <div class="userPrintsWrapper">
                             <div class="userExtraDataIntro">
                             <div class="userModalTitle" id="modal-account-info-prints-count">prints: ${data.profile.prints}</div>
-                            <button class="modalExtraDataExpandBtn" onclick="document.getElementById('modal-account-info-prints').classList.toggle('hidden'); this.innerHTML = this.innerHTML === '<i class=\"material-symbols-rounded\">expand_more</i>' ? '<i class=\"material-symbols-rounded\">expand_less</i>' : '<i class=\"material-symbols-rounded\">expand_more</i>';" id="modal-account-info-prints-btn"><i class="material-symbols-rounded">expand_more</i></button>
+                                <button class="modalExtraDataExpandBtn" 
+                                        onclick="toggleExpand(this)" 
+                                        id="modal-account-info-prints-btn">
+                                    <i class="material-symbols-rounded">expand_more</i>
+                                </button>
                             </div>
                             <div class="userPrintItems hidden" id="modal-account-info-prints"></div>
                         </div>
@@ -455,6 +459,7 @@ function fetchTimeline(offset = 0) {
             });
             timelineContainer.innerHTML += postsHtml;
 
+ 
             // Show or hide the "View More" button
             const viewMoreBtn = document.getElementById("newest-prints");
             if (data.posts.length < data.total_posts) {
@@ -499,6 +504,16 @@ function fetchTimeline(offset = 0) {
     .catch(error => {
         console.error("Request failed", error);
     });
+}
+
+function toggleExpand(btn) {
+    const target = document.getElementById('modal-account-info-prints');
+    target.classList.toggle('hidden');
+
+    const icon = btn.querySelector('i');
+    const isExpanded = icon.textContent.trim() === 'expand_more';
+
+    icon.textContent = isExpanded ? 'expand_less' : 'expand_more';
 }
 
 function fetchLilcoinsPage() {
