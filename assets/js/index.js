@@ -663,29 +663,45 @@ function fetchLilcoinsPage() {
 
             // Split the HTML into chunks, keeping the first part as the preamble
             const taskslist = tasksHtml.split('<div class="lilCoinsOfferWraper"');
-            const preamble = taskslist.shift(); // the non-task HTML before the first div
+            const preamble = taskslist.shift(); // non-task HTML before the first task
 
-            // Sort tasks
-            const sortedTasks = taskslist.sort((a, b) => {
-                const aIsClaimed = a.includes('data-claimed="true"');
-                const bIsClaimed = b.includes('data-claimed="true"');
+            // Sort and separate tasks
+            const activeTasks = [];
+            const completedTasks = [];
 
-                // Claimed at the bottom
-                if (aIsClaimed !== bIsClaimed) {
-                    return aIsClaimed ? 1 : -1;
+            taskslist.forEach(task => {
+                const isClaimed = task.includes('data-claimed="true"');
+                if (isClaimed) {
+                    completedTasks.push(task);
+                } else {
+                    activeTasks.push(task);
                 }
+            });
 
-                // Time always on top
+            // Sort within each group (optional: by time)
+            const sortByTimeTop = (a, b) => {
                 const aHasTime = a.includes('data-type="hour"');
                 const bHasTime = b.includes('data-type="hour"');
                 return aHasTime ? -1 : (bHasTime ? 1 : 0);
-            });
+            };
+
+            activeTasks.sort(sortByTimeTop);
+            completedTasks.sort(sortByTimeTop);
 
             // Rebuild the HTML
-            const finalHtml = preamble + sortedTasks.map(html => '<div class="lilCoinsOfferWraper"' + html).join("");
+            const section = (title, tasks) => 
+                tasks.length > 0 
+                    ? `<div class="lilCoinsShopSectionTitle">${title}</div>` + 
+                    tasks.map(html => '<div class="lilCoinsOfferWraper"' + html).join("")
+                    : "";
+
+            const finalHtml = preamble +
+                section("- active -", activeTasks) +
+                section("- completed -", completedTasks);
 
             // Update the DOM
             document.getElementById("lilCoins-shop-wrapper").innerHTML = finalHtml;
+
 
 
             document.getElementById("lil-coins-user-balance-display").textContent = lilcoins;
