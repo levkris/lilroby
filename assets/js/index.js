@@ -511,8 +511,6 @@ function fetchLilcoinsPage() {
     })
     .then(data => {
         if (data.status === "success") {
-            
-            let lilcoins_balance = lilcoins;
 
             const tasks = data.tasks;
 
@@ -520,7 +518,7 @@ function fetchLilcoinsPage() {
             
                 <div class="lilCoinsUserBalanceWrapper">
                     <div class="lilCoinsUserBalanceTxt">Balance:</div>
-                    <div class="lilCoinsUserBalanceTxt lilCoinsUserBalanceDisplay" id="lil-coins-user-balance-display">${lilcoins_balance}</div>
+                    <div class="lilCoinsUserBalanceTxt lilCoinsUserBalanceDisplay" id="lil-coins-user-balance-display">0</div>
                     <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
                 </div>
                 <div class="lilCoinsDescriptionWrapper">
@@ -562,6 +560,7 @@ function fetchLilcoinsPage() {
 
 
             document.getElementById("lilCoins-shop-wrapper").innerHTML = tasksHtml;
+            document.getElementById("lil-coins-user-balance-display").textContent = lilcoins;
 
             document.getElementById("lilCoinsContentWrapper").innerHTML = tasksHtmlOuter;
 
