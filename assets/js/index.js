@@ -563,7 +563,7 @@ function fetchLilcoinsPage() {
                                         <div class="lilCoinsOfferText">${task.price}</div>
                                         <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
                                     </div>
-                                    <div class="lilCoinsOfferTextWrapper oneHoursRewardTimer" id="one-hour-reward-timer">${formatTime(timeLeft)}</div>
+                                    <div class="lilCoinsOfferTextWrapper oneHoursRewardTimer" id="one-hour-reward-timer" data-alias="${task.alias}" >${formatTime(timeLeft)}</div>
                                     <button class="lilCoinsOfferBtn ${timeLeft === 0 ? "" : "inactive"}" id="one-hours-reward-btn" onclick="claimReward('${task.alias}')">${timeLeft === 0 ? "claim" : "wait"}</button>
                                 </div>
                             </div>
@@ -572,7 +572,7 @@ function fetchLilcoinsPage() {
                         setInterval(() => {
                             if (timeLeft !== 0) {
                                 timeLeft -= 1;
-                                document.getElementById("one-hour-reward-timer").textContent = formatTime(timeLeft);
+                                document.querySelectorAll("#one-hour-reward-timer[data-alias='" + task.alias + "']").textContent = formatTime(timeLeft);
                             }
                         }, 1000);
                     });
