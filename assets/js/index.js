@@ -661,8 +661,11 @@ function fetchLilcoinsPage() {
                 }
             });
 
-            // Sort tasks
+            // Split the HTML into chunks, keeping the first part as the preamble
             const taskslist = tasksHtml.split('<div class="lilCoinsOfferWraper"');
+            const preamble = taskslist.shift(); // the non-task HTML before the first div
+
+            // Sort tasks
             const sortedTasks = taskslist.sort((a, b) => {
                 const aIsClaimed = a.includes('data-claimed="true"');
                 const bIsClaimed = b.includes('data-claimed="true"');
@@ -678,8 +681,8 @@ function fetchLilcoinsPage() {
                 return aHasTime ? -1 : (bHasTime ? 1 : 0);
             });
 
-            // Reconstruct the HTML
-            const finalHtml = sortedTasks.map((html, i) => i === 0 ? html : '<div class="lilCoinsOfferWraper"' + html).join("");
+            // Rebuild the HTML
+            const finalHtml = preamble + sortedTasks.map(html => '<div class="lilCoinsOfferWraper"' + html).join("");
 
             // Update the DOM
             document.getElementById("lilCoins-shop-wrapper").innerHTML = finalHtml;
