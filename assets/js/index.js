@@ -538,27 +538,28 @@ function fetchLilcoinsPage() {
 
             let tasksHtml = "";
 
-            tasks.forEach(taskGroup => {
-                if (taskGroup === "hours") {
-
+            Object.entries(tasks).forEach(([taskGroupName, taskGroup]) => {
+                if (taskGroupName === "hours") {
                     taskGroup.forEach(task => {
                         tasksHtml += `
                             <div class="lilCoinsOfferWraper">
-                            <div class="lilCoinsOfferMain">
-                                <div class="lilCoinsOfferTitle">${task.name}:</div>
-                                <div class="lilCoinsOfferContent">
-                                <div class="lilCoinsOfferText">${task.price}</div>
-                                <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
+                                <div class="lilCoinsOfferMain">
+                                    <div class="lilCoinsOfferTitle">${task.name}:</div>
+                                    <div class="lilCoinsOfferContent">
+                                        <div class="lilCoinsOfferText">${task.price}</div>
+                                        <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
+                                    </div>
+                                    <div class="lilCoinsOfferTextWrapper oneHoursRewardTimer" id="one-hour-reward-timer">${formatTime(task.time_left)}</div>
+                                    <button class="lilCoinsOfferBtn ${task.time_left === 0 ? "" : "inactive"}" id="one-hours-reward-btn">${task.time_left === 0 ? "claim" : "wait"}</button>
                                 </div>
-                                <div class="lilCoinsOfferTextWrapper oneHoursRewardTimer" id="one-hour-reward-timer">${formatTime(task.time_left)}</div>
-                                <button class="lilCoinsOfferBtn ${task.time_left === 0 ? "" : "inactive"}" id="one-hours-reward-btn">${task.time_left === 0 ? "claim" : "wait"}</button>
-                            </div>
                             </div>
                         `;
                     });
                 }
-                
+
+                // You can add handling for other taskGroupNames here like "prints", "upvotes", etc.
             });
+
 
             document.getElementById("lilCoins-shop-wrapper").innerHTML = tasksHtml;
 
