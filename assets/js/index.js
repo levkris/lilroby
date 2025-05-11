@@ -552,34 +552,58 @@ function fetchLilcoinsPage() {
                 if (taskGroupName === "hours") {
                     taskGroup.forEach(task => {
                         let timeLeft = task.time_left;
-                        if (claimableHoursList.find(hour => hour.alias === task.alias)) {
-                            timeLeft = claimableHoursList.find(hour => hour.alias === task.alias).time_left;
+
+                        // Override with current time from claimable list if exists
+                        const matched = claimableHoursList.find(hour => hour.alias === task.alias);
+                        if (matched) {
+                            timeLeft = matched.time_left;
                         }
+
+                        // Unique alias used as data attribute to select specific elements
                         tasksHtml += `
-                            <div class="lilCoinsOfferWraper">
+                            <div class="lilCoinsOfferWraper" data-alias="${task.alias}">
                                 <div class="lilCoinsOfferMain">
                                     <div class="lilCoinsOfferTitle">${task.name}:</div>
                                     <div class="lilCoinsOfferContent">
                                         <div class="lilCoinsOfferText">${task.price}</div>
                                         <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
                                     </div>
-                                    <div class="lilCoinsOfferTextWrapper oneHoursRewardTimer" id="one-hour-reward-timer" data-alias="${task.alias}" >${formatTime(timeLeft)}</div>
-                                    <button class="lilCoinsOfferBtn ${timeLeft === 0 ? "" : "inactive"}" id="one-hours-reward-btn" onclick="claimReward('${task.alias}')">${timeLeft === 0 ? "claim" : "wait"}</button>
+                                    <div class="lilCoinsOfferTextWrapper oneHoursRewardTimer" data-alias="${task.alias}">
+                                        ${formatTime(timeLeft)}
+                                    </div>
+                                    <button class="lilCoinsOfferBtn ${timeLeft === 0 ? "" : "inactive"}"
+                                            data-alias="${task.alias}"
+                                            onclick="claimReward('${task.alias}')">
+                                        ${timeLeft === 0 ? "claim" : "wait"}
+                                    </button>
                                 </div>
                             </div>
                         `;
 
-                        setInterval(() => {
-                            if (timeLeft !== 0) {
-                                timeLeft -= 1;
-                                document.querySelectorAll("#one-hour-reward-timer[data-alias='" + task.alias + "']").textContent = formatTime(timeLeft);
-                            }
-                        }, 1000);
+                        // Use a closure to keep the right timeLeft per task
+                        setTimeout(() => {
+                            const timerInterval = setInterval(() => {
+                                if (timeLeft > 0) {
+                                    timeLeft--;
+
+                                    const timerEls = document.querySelectorAll(`.oneHoursRewardTimer[data-alias="${task.alias}"]`);
+                                    timerEls.forEach(el => el.textContent = formatTime(timeLeft));
+
+                                    // If time runs out, update button
+                                    if (timeLeft === 0) {
+                                        const btns = document.querySelectorAll(`.lilCoinsOfferBtn[data-alias="${task.alias}"]`);
+                                        btns.forEach(btn => {
+                                            btn.classList.remove("inactive");
+                                            btn.textContent = "claim";
+                                        });
+                                    }
+                                }
+                            }, 1000);
+                        }, 0);
                     });
                 }
-
-                // You can add handling for other taskGroupNames here like "prints", "upvotes", etc.
             });
+
 
 
             document.getElementById("lilCoins-shop-wrapper").innerHTML = tasksHtml;
