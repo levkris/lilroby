@@ -49,6 +49,7 @@ lilcoinsTab.addEventListener("click", () => {
     printsTimelineWrapper.classList.remove("active");
     rankingWrapper.classList.remove("active");
     lilcoinsWrapper.classList.add("active");
+    fetchLilcoinsPage();
 })
 
 getRankings('prints_count')
@@ -492,4 +493,101 @@ function fetchTimeline(offset = 0) {
     .catch(error => {
         console.error("Request failed", error);
     });
+}
+
+function fetchLilcoinsPage() {
+
+    fetch("https://wokki20.nl/lilroby/api/v1/lilcoin_tasks", { // url parameter is only needed when you want to specify a user
+        method: "GET",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("access_token"),
+        }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok, status: ' + response.status);
+        }
+        return response.json();  // Parse JSON if the response is OK
+    })
+    .then(data => {
+        if (data.status === "success") {
+            
+            let lilcoins_balance = lilcoins;
+
+            const tasks = data.tasks;
+
+            let tasksHtmlOuter = `
+            
+                <div class="lilCoinsUserBalanceWrapper">
+                    <div class="lilCoinsUserBalanceTxt">Balance:</div>
+                    <div class="lilCoinsUserBalanceTxt lilCoinsUserBalanceDisplay" id="lil-coins-user-balance-display">${lilcoins_balance}</div>
+                    <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
+                </div>
+                <div class="lilCoinsDescriptionWrapper">
+                    <div class="lilCoinsDescription">
+                    You can get lilCoins for free in many ways below, but if you have
+                    some spare change and want to support the project you can also buy
+                    some! Have fun!
+                    </div>
+                </div>
+                <div class="lilCoinsShopWrapper" id="lilCoins-shop-wrapper">
+
+                </div>
+            
+            `;
+
+            let tasksHtml = "";
+
+            tasks.forEach(taskGroup => {
+                if (taskGroup === "hours") {
+
+                    taskGroup.forEach(task => {
+                        tasksHtml += `
+                            <div class="lilCoinsOfferWraper">
+                            <div class="lilCoinsOfferMain">
+                                <div class="lilCoinsOfferTitle">${task.name}:</div>
+                                <div class="lilCoinsOfferContent">
+                                <div class="lilCoinsOfferText">${task.price}</div>
+                                <img src="assets/branding/lilcoin-wb.png" style="width: 20px; height: 20px" alt="lil coin icon">
+                                </div>
+                                <div class="lilCoinsOfferTextWrapper oneHoursRewardTimer" id="one-hour-reward-timer">${formatTime(task.time_left)}</div>
+                                <button class="lilCoinsOfferBtn ${task.time_left === 0 ? "" : "inactive"}" id="one-hours-reward-btn">${task.time_left === 0 ? "claim" : "wait"}</button>
+                            </div>
+                            </div>
+                        `;
+                    });
+                }
+                
+            });
+
+            document.getElementById("lilCoins-shop-wrapper").innerHTML = tasksHtml;
+
+            document.getElementById("lilCoinsContentWrapper").innerHTML = tasksHtmlOuter;
+
+        console.log(data);
+        } else {
+            console.error("Error:", data.error);
+        }
+    })
+    .catch(error => {
+        console.error("Request failed", error);
+    });
+                                        
+}
+
+function formatTime(time) {
+    const hours = Math.floor(time / 3600);
+    const minutes = Math.floor((time % 3600) / 60);
+    const seconds = time % 60;
+    
+    let formattedTime = '';
+    if (hours > 0) {
+        formattedTime += `${hours}h `;
+    }
+    if (minutes > 0) {
+        formattedTime += `${minutes}min `;
+    }
+    formattedTime += seconds > 0 ? `${seconds}sec` : 'claim now';
+    
+    return formattedTime.trim();
 }
