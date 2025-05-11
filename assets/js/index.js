@@ -255,7 +255,7 @@ function getProfile() {
                         <div class="userPrintsWrapper">
                             <div class="userExtraDataIntro">
                             <div class="userModalTitle" id="modal-account-info-prints-count">prints: ${data.profile.prints}</div>
-                            <button class="modalExtraDataExpandBtn" id="modal-account-info-prints-btn"><i class="material-symbols-rounded">expand_more</i></button>
+                            <button class="modalExtraDataExpandBtn" onclick="document.getElementById('modal-account-info-prints').classList.toggle('hidden'); this.textContent = this.textContent === 'expand_more' ? 'expand_less' : 'expand_more';" id="modal-account-info-prints-btn"><i class="material-symbols-rounded">expand_more</i></button>
                             </div>
                             <div class="userPrintItems hidden" id="modal-account-info-prints"></div>
                         </div>
@@ -273,6 +273,12 @@ function getProfile() {
                 `;
 
                 document.body.insertAdjacentHTML("beforeend", profilePopup);
+
+                data.profile.prints_list.forEach(print => {
+                    document.getElementById("modal-account-info-prints").innerHTML += `
+                        <div class="userPrintjobItem">Print #${print.id}, ${print.title}</div>
+                    `; 
+                })
             });
 
         } else {
