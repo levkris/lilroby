@@ -679,7 +679,7 @@ function fetchLilcoinsPage() {
             });
 
             // Update the html
-            document.getElementById("lilCoins-shop-wrapper").append(...sortedTasks);
+            document.getElementById("lilCoins-shop-wrapper").innerHTML = "".append(...sortedTasks);
 
             document.getElementById("lil-coins-user-balance-display").textContent = lilcoins;
 
