@@ -662,8 +662,8 @@ function fetchLilcoinsPage() {
             });
 
             // Sort tasks
-            const taskslist = tasksHtml.split("<div class=\"lilCoinsOfferWraper\"");
-            const sortedTasks = Array.from(taskslist).sort((a, b) => {
+            const taskslist = tasksHtml.split('<div class="lilCoinsOfferWraper"');
+            const sortedTasks = taskslist.sort((a, b) => {
                 const aIsClaimed = a.includes('data-claimed="true"');
                 const bIsClaimed = b.includes('data-claimed="true"');
 
@@ -678,8 +678,12 @@ function fetchLilcoinsPage() {
                 return aHasTime ? -1 : (bHasTime ? 1 : 0);
             });
 
-            // Update the html
-            document.getElementById("lilCoins-shop-wrapper").innerHTML = "".append(...sortedTasks);
+            // Reconstruct the HTML
+            const finalHtml = sortedTasks.map((html, i) => i === 0 ? html : '<div class="lilCoinsOfferWraper"' + html).join("");
+
+            // Update the DOM
+            document.getElementById("lilCoins-shop-wrapper").innerHTML = finalHtml;
+
 
             document.getElementById("lil-coins-user-balance-display").textContent = lilcoins;
 
